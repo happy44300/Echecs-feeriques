@@ -50,9 +50,9 @@ npm install
 * `index.html` : page principale de l'application
 * `style.css` : mise en forme de l'application
 * `script.js` : algorithme(s) JavaScript côté client (affichage de l'échiquier)
-* `src` contient le code source du serveur.
+* `src/main/ts` contient le code source du serveur.
 * `main.ts` : programme principal de création et gestion du serveur web
-* `spec` contient les tests unitaires du serveur.
+* `src/test/ts` contient les tests unitaires du serveur.
 * `node_modules` contient les modules Node.js utilisés dans le projet. Vous ne devez pas modifier le contenu de ce dossier.
 * `package.json` est le fichier de configuration de *npm*. Vous n'avez pas besoin de le modifier.
 * `tsconfig.json` est le fichier de configuration de *TypeScript*. Vous n'avez pas besoin de le modifier.
