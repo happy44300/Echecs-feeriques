@@ -18,31 +18,32 @@ L'objectif de ce mini-projet est d'intégrer et adapter tout le travail réalis�
 git clone https://gitlab.univ-nantes.fr/${USER}/projet-2019.git
 cd projet-2019
 npm install
-
 ----
 
 . Regardez la structure du projet. Le projet est organisé en différents dossiers:
 [source,txt]
 ----
-    |-- onlineChess
+    |-- projet-2019
       |-- client
          |-- index.html
          |-- script.js
          |-- style.css
       |-- src
-         |-- chessboard.ts
-         |-- main.ts
-         |-- move-validation.ts
-         |-- movements.ts
-         |-- piece.ts
-         |-- position.ts
-      |-- spec
-         |-- move-validation-spec.ts
-         |-- movements-spec.ts
+        |-- main
+          |-- ts
+            |-- chessboard.ts
+            |-- main.ts
+            |-- move-validation.ts
+            |-- movements.ts
+            |-- piece.ts
+            |-- position.ts
+        |-- test
+          |-- ts
+            |-- move-validation.spec.ts
+            |-- movements.spec.ts
       |-- node_modules
       |-- package.json
       |-- tsconfig.json
-
 ----
 
 * `client` contient le code Javascript qui sera exécuté sur le browser. Vous ne devez pas modifier le contenu de ce dossier.
@@ -68,8 +69,8 @@ npm install
 
 Pour déplacer les pièces sur l'échiquier, indiquez dans le formulaire en bas de page la pièce à déplacer et sa destination.
 Utilisez la notation par coordonnées, qui inclut la place à partir de laquelle la pièce se déplace, ainsi que sa destination.
-Par exemple:
 
+.Par exemple:
 |===
 |Coup |Coordonnées |Description 
 
@@ -114,11 +115,12 @@ Le traitement des déplacements se fait de la façon suivante:
 
 . La fonction `processMove()` appelle une autre fonction, `parseMoveString()`, qui transforme une chaîne de caractères en un déplacement (`interface Move`) entre 2 positions (`interface Position`).
 
-. La fonction `processMove()` appelle ensuite la fonction `isMovePossible()`, qui fait appel à différentes fonctions de validation spécifiques aux pièces de l'échiquier (une par type de pièce). Le module `move-validation` contient toutes les fonctions de validation de déplacements.
+. La fonction `processMove()` appelle ensuite la fonction `isMovePossible()`, qui fait appel à différentes fonctions de validation spécifiques aux pièces de l'échiquier (une par type de pièce). 
+Le module `move-validation` contient toutes les fonctions de validation de déplacements.
 
 . Par exemple, lorsqu'il s'agit d'un Pion blanc, la fonction `isMovePossible()` appelle la fonction `whitePawnMove()`, qui retourne `true` si le déplacement est possible ou `false` si ce n'est pas le cas.
 
-. Si le mouvement est possible, c'est à dire la fonction `isMovePossible()` retourne `true`, la fonction `processMove()` appelle la fonction `performMove(), qui effectue le déplacement.
+. Si le mouvement est possible, c'est à dire la fonction `isMovePossible()` retourne `true`, la fonction `processMove()` appelle la fonction `performMove()`, qui effectue le déplacement.
 
 Vous devez donc parcourir le module `move-validation` et implémenter les fonctions de validation contenant le commentaire "`// #TODO:`". 
 
@@ -140,7 +142,7 @@ Le paramètre `move` contient 2 coordonnées de type `Position`, représentant l
 Les coordonnées indiquent *toujours* des cases à l'intérieur de l'échiquier, c'est à dire, une colonne entre `A` et `H` et une ligne entre `1` et `8`.
 Donc, il n'y a pas besoin de vérifier si un déplacement conduit une pièce à l'extérieur de l'échiquier.
 
-Les tests unitaires des fonctions `blackPawnMove()` et `whitePawnMove()` ont déjà été implémentés, vous les trouverez dans le fichier `./spec/move-validation-spec.ts`.
+Les tests unitaires de la fonction `blackPawnMove()` ont déjà été implémentés, vous les trouverez dans le fichier `./src/test/ts/move-validation-spec.ts`.
 *Vous devez compléter tous les squelettes de tests unitaires fournis à l'intérieur de ce fichier !* 
 
 Vous devez procéder par itérations successives, n'essayez pas d'implémenter les fonctions d'un seul trait. Observez le cycle de développement suivant:
@@ -176,30 +178,33 @@ export function rookMove(board: Chessboard, move: Move): boolean {
 
 [source,ts]
 ----
-// Dans le fichier "move-validation-spec.ts"
-describe("Test rookMove()", () => {
-    // Fonction exécutée avant chaque test unitaires:
-    beforeEach( () => {
-        // Création d'un échiquier vide:
+// Dans le fichier "move-validation.spec.ts"
+export class TestRockMoves {
+    chessboard : Chessboard
+    @Setup
+    beforeEach(){
         chessboard = createEmptyChessboard();
 
         // La variable "positionE4" a été créée au début du module pour simplifier le code des tests
         // Place une tour sur la case E4 d'un échiquier vide:
         putPiece(chessboard, positionE4, pieces.blackPawn);
-    });
+    }
 
-    it("A roock can move horizontally", () => {
+    @Test("A roock can move horizontally")
+    testRockCanMoveHorizontally() {
         // Les variable "moveE4_H4" et "moveE4_14" ont été créées au début 
         // du module pour simplifier le code des tests.
         // Le déplacement doit être possible:
-        expect(isPossible.rookMove(chessboard, moveE4_H4)).toBeTruthy();
-        expect(isPossible.rookMove(chessboard, moveE4_A4)).toBeTruthy();
-    });
+        Expect(isPossible.rookMove(chessboard, moveE4_H4)).toBeTruthy();
+        Expect(isPossible.rookMove(chessboard, moveE4_A4)).toBeTruthy();
+    }
+}
 ----
 
 ==== Etape 2
 
-Nouvelle fonctionnalité à implémenter: la validation des déplacements verticaux. Modifiez la fonction `rookMove()`:
+Nouvelle fonctionnalité à implémenter: la validation des déplacements verticaux. 
+Modifiez la fonction `rookMove()`:
 
 [source,ts]
 ----
@@ -214,19 +219,16 @@ export function rookMove(board: Chessboard, move: Move): boolean {
 
 [source,ts]
 ----
-// Dans le fichier "move-validation-spec.ts"
-describe("Test rookMove()", () => {
-    beforeEach( () => { // Fonction exécutée avant chaque test unitaires
-        chessboard = createEmptyChessboard(); // Création d'un échiquier vide
-    });
+// Dans le fichier "move-validation.spec.ts"
+export class TestRockMoves {
+    // (...)
 
-    it("A roock can move horizontally", () => { // (...)
-    });
-
-    it("A roock can move vertically", () => {
-        expect(isPossible.rookMove(chessboard, moveE4_E8)).toBeTruthy();
-        expect(isPossible.rookMove(chessboard, moveE4_E1)).toBeTruthy();
-    });
+    @Test("A roock can move vertically")
+    testRockCanMoveVertically() {
+        Expect(isPossible.rookMove(chessboard, moveE4_E8)).toBeTruthy();
+        Expect(isPossible.rookMove(chessboard, moveE4_E1)).toBeTruthy();
+    }
+}
 ----
 
 ==== Autres étapes
@@ -241,8 +243,8 @@ Cela permet de nous envoyer tous les changements que vous avez effectué sur le 
 . Assurez vous d'avoir effectué tous les _commits_ et _pushs_ nécessaires avec git.
 . Dans le panneau de gauche, cliquez sur "Demandes de fusion".
 . Cliquez sur "Nouvelle demande de fusion".
-. Vérifiez que dans la partie droite on trouve bien `naomod/software-development-course/onlineChess` et `master`.
-. Dans la partie gauche, choisissez `&lt;votre nom d&#39;utilisateur&gt;/onlineChess` (normalement déjà choisi) et également `master`.
+. Vérifiez que dans la partie droite on trouve bien `naomod/idl/projet-2019` et `master`.
+. Dans la partie gauche, choisissez `&lt;votre nom d&#39;utilisateur&gt;/projet-2019` (normalement déjà choisi) et également `master`.
 . Cliquez sur "Compare branches and continue".
 . Comme titre pour la demande de fusion, indiquez "Rendu NOM1 NOM2".
 . Enfin, cliquez en bas sur "Submit demande de fusion"

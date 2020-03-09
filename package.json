@@ -22,10 +22,6 @@
     "typescript": "^3.3.3"
   },
   "devDependencies": {
-    "@stryker-mutator/core": "^1.0.2",
-    "@stryker-mutator/jasmine-framework": "^1.0.2",
-    "@stryker-mutator/jasmine-runner": "^1.0.2",
-    "@stryker-mutator/typescript": "^1.0.2",
     "alsatian": "^3.2.1",
     "typescript": "^3.7.5"
   },
