@@ -142,7 +142,7 @@ Le paramètre `move` contient 2 coordonnées de type `Position`, représentant l
 Les coordonnées indiquent *toujours* des cases à l'intérieur de l'échiquier, c'est à dire, une colonne entre `A` et `H` et une ligne entre `1` et `8`.
 Donc, il n'y a pas besoin de vérifier si un déplacement conduit une pièce à l'extérieur de l'échiquier.
 
-Les tests unitaires de la fonction `blackPawnMove()` ont déjà été implémentés, vous les trouverez dans le fichier `./src/test/ts/move-validation-spec.ts`.
+Les tests unitaires de la fonction `blackPawnMove()` ont déjà été implémentés, vous les trouverez dans le fichier `./src/test/ts/pawn-move-validation-spec.ts`.
 *Vous devez compléter tous les squelettes de tests unitaires fournis à l'intérieur de ce fichier !* 
 
 Vous devez procéder par itérations successives, n'essayez pas d'implémenter les fonctions d'un seul trait. Observez le cycle de développement suivant:
@@ -178,9 +178,10 @@ export function rookMove(board: Chessboard, move: Move): boolean {
 
 [source,ts]
 ----
-// Dans le fichier "move-validation.spec.ts"
-export class TestRockMoves {
-    chessboard : Chessboard
+// Dans le fichier "rook-move-validation.spec.ts"
+let chessboard : Chessboard;
+
+export class TestRookMoves {
     @Setup
     beforeEach(){
         chessboard = createEmptyChessboard();
@@ -190,8 +191,8 @@ export class TestRockMoves {
         putPiece(chessboard, positionE4, pieces.blackPawn);
     }
 
-    @Test("A roock can move horizontally")
-    testRockCanMoveHorizontally() {
+    @Test("A rook can move horizontally")
+    testCanMoveHorizontally() {
         // Les variable "moveE4_H4" et "moveE4_14" ont été créées au début 
         // du module pour simplifier le code des tests.
         // Le déplacement doit être possible:
@@ -219,12 +220,12 @@ export function rookMove(board: Chessboard, move: Move): boolean {
 
 [source,ts]
 ----
-// Dans le fichier "move-validation.spec.ts"
-export class TestRockMoves {
+// Dans le fichier "rook-move-validation.spec.ts"
+export class TestRocoMoves {
     // (...)
 
-    @Test("A roock can move vertically")
-    testRockCanMoveVertically() {
+    @Test("A rook can move vertically")
+    testCanMoveVertically() {
         Expect(isPossible.rookMove(chessboard, moveE4_E8)).toBeTruthy();
         Expect(isPossible.rookMove(chessboard, moveE4_E1)).toBeTruthy();
     }
