@@ -1,3 +1,7 @@
+/**
+ * NE PAS MODIFIER CE FICHIER
+ */
+
 import { Chessboard, squareAtPosition, Square } from './chessboard'
 import { Position } from "./position";
 import * as pieces from './piece'

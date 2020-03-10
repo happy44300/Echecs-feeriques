@@ -1,4 +1,8 @@
 /**
+ * NE PAS MODIFIER CE FICHIER
+ */
+
+/**
  * Chess is played on a square board of eight rows (called ranks, 
  * denoted 1 to 8) and eight columns (called files, denoted a to h).
  */

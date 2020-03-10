@@ -1,3 +1,6 @@
+/**
+ * NE PAS MODIFIER CE FICHIER
+ */
 
 export interface Piece {
     symbol    : string,  

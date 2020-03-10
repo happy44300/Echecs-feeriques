@@ -1,3 +1,6 @@
+/**
+ * NE PAS MODIFIER CE FICHIER
+ */
 import * as pieces from './piece'
 import {Piece} from './piece'
 import {Move} from './movements'
