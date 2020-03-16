@@ -88,23 +88,23 @@ export function createInitialChessboard(): Chessboard {
     putPieceAtCoordinate(chessboard, 3, 0, pieces.whiteQueen);
     putPieceAtCoordinate(chessboard, 3, 7, pieces.blackQueen);
 
-    // Bishops
-    putPieceAtCoordinate(chessboard, 2, 0, pieces.whiteBishop);
-    putPieceAtCoordinate(chessboard, 2, 7, pieces.blackBishop);
-    putPieceAtCoordinate(chessboard, 5, 0, pieces.whiteBishop);
-    putPieceAtCoordinate(chessboard, 5, 7, pieces.blackBishop);
+    // Princesss
+    putPieceAtCoordinate(chessboard, 2, 0, pieces.whitePrincess);
+    putPieceAtCoordinate(chessboard, 2, 7, pieces.blackPrincess);
+    putPieceAtCoordinate(chessboard, 5, 0, pieces.whitePrincess);
+    putPieceAtCoordinate(chessboard, 5, 7, pieces.blackPrincess);
 
-    // Knights
-    putPieceAtCoordinate(chessboard, 1, 0, pieces.whiteKnight);
-    putPieceAtCoordinate(chessboard, 1, 7, pieces.blackKnight);
-    putPieceAtCoordinate(chessboard, 6, 0, pieces.whiteKnight);
-    putPieceAtCoordinate(chessboard, 6, 7, pieces.blackKnight);
+    // Camels
+    putPieceAtCoordinate(chessboard, 1, 0, pieces.whiteCamel);
+    putPieceAtCoordinate(chessboard, 1, 7, pieces.blackCamel);
+    putPieceAtCoordinate(chessboard, 6, 0, pieces.whiteCamel);
+    putPieceAtCoordinate(chessboard, 6, 7, pieces.blackCamel);
 
-    // Roocks
-    putPieceAtCoordinate(chessboard, 0, 0, pieces.whiteRoock);
-    putPieceAtCoordinate(chessboard, 0, 7, pieces.blackRoock);
-    putPieceAtCoordinate(chessboard, 7, 0, pieces.whiteRoock);
-    putPieceAtCoordinate(chessboard, 7, 7, pieces.blackRoock);
+    // Empresss
+    putPieceAtCoordinate(chessboard, 0, 0, pieces.whiteEmpress);
+    putPieceAtCoordinate(chessboard, 0, 7, pieces.blackEmpress);
+    putPieceAtCoordinate(chessboard, 7, 0, pieces.whiteEmpress);
+    putPieceAtCoordinate(chessboard, 7, 7, pieces.blackEmpress);
 
     return chessboard;
 }

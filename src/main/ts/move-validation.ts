@@ -93,44 +93,47 @@ export function queenMove(board: Chessboard, move: Move): boolean {
 }
 
 /**
- * Checks whether a Rook can perform a given move.
- * A rook can move any number of squares along a rank or file, 
+ * Checks whether a Empress can perform a given move.
+ * An empress can move any number of squares along a rank or file, 
  * but cannot leap over other pieces. 
  * 
  * @param board The chessboard of the current game
  * @param move 
  */
-export function rookMove(board: Chessboard, move: Move): boolean {
+export function empressMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 }
 
 /**
- * Checks whether a Bishop can perform a given move.
- * A bishop can move any number of squares diagonally, 
+ * Checks whether a Princess can perform a given move.
+ * A princess can move any number of squares diagonally, 
  * but cannot leap over other pieces.
- * 
- * @param board The chessboard of the current game
- * @param move 
- */
-export function bishopMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    return true;
-}
-
-/**
- * Checks whether a Knight can perform a given move.
- * A knight moves to any of the closest squares that are not on the 
+ * A princess can also move to any of the closest squares that are not on the 
  * same rank, file, or diagonal. (Thus the move forms an "L"-shape: 
  * two squares vertically and one square horizontally, or two 
  * squares horizontally and one square vertically.) 
  * 
- * The knight is the only piece that can leap over other pieces.
+ * @param board The chessboard of the current game
+ * @param move 
+ */
+export function princessMove(board: Chessboard, move: Move): boolean {
+    // #TODO: Implement this function
+    return true;
+}
+
+/**
+ * Checks whether a Camel can perform a given move.
+ * The Camel move forms an "L"-shape: 
+ * three squares vertically and one square horizontally, or three 
+ * squares horizontally and one square vertically.) 
+ * 
+ * The camel is the only piece that can leap over other pieces.
  * 
  * @param board The chessboard of the current game
  * @param move 
  */
-export function knightMove(board: Chessboard, move: Move): boolean {
+export function camelMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 } 

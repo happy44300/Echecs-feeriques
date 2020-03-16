@@ -3,49 +3,49 @@ import { Chessboard, createEmptyChessboard, putPiece } from '../../main/ts/chess
 
 let chessboard : Chessboard;
 
-export class TestKnightMoves {
+export class TestCamelMoves {
     @Setup
     beforeEach() {
         // TODO:
         // Initialize an empty chessboard
     }
 
-    @Test("A Knight can move two squares horizontally and one square vertically")
-    testCanMoveTwoHorizontalAndOneVertical() {
+    @Test("A Camel can move three squares horizontally and one square vertically")
+    testCanMoveThreeHorizontalAndOneVertical() {
         // TODO:
     }
 
-    @Test("A Knight can move two squares vertically and one square horizontally")
-    testCanMoveTwoVerticalAndOneHorizontal() {
+    @Test("A Camel can move three squares vertically and one square horizontally")
+    testCanMoveThreeVerticalAndOneHorizontal() {
         // TODO:
     }
 
-    @Test("A Knight can leap other pieces")
+    @Test("A Camel can leap other pieces")
     testCanLeapOtherPieces() {
         // TODO:
     }
 
-    @Test("A Knight cannot move diagonally")
+    @Test("A Camel cannot move diagonally")
     testCannotMoveDiagonally() {
         // TODO:
     }
 
-    @Test("A Knight cannot move horizontally")
+    @Test("A Camel cannot move horizontally")
     testCannotMoveHorizontally() {
         // TODO:
     }
 
-    @Test("A Knight cannot move vertically")
+    @Test("A Camel cannot move vertically")
     testCannotMoveVertically() {
         // TODO:
     }
 
-    @Test("A Knight can capture a piece from another color")
+    @Test("A Camel can capture a piece from another color")
     testCanCaptureAnotherColor() {
         // TODO:
     }
 
-    @Test("A Knight cannot capture a piece from the same color")
+    @Test("A Camel cannot capture a piece from the same color")
     testCannotCaptureSameColor() {
         // TODO:
     }

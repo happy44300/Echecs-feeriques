@@ -3,51 +3,66 @@ import { Chessboard, createEmptyChessboard, putPiece } from '../../main/ts/chess
 
 let chessboard : Chessboard;
 
-export class TestBishopMoves {
+export class TestPrincessMoves {
     @Setup
     beforeEach() {
         // TODO:
         // Initialize an empty chessboard
-        // Place a black Bishop on E4
+        // Place a black Princess on E4
     }
 
-    @Test("A Bishop can move diagonally")
+    @Test("A Princess can move diagonally")
     testCanMoveDiagonally() {
         // TODO:
         // Check the following moves are possible: 
         // moveE4_A8, moveE4_B1, moveE4_H7, moveE4_H1        
     }
 
-    @Test("A Bishop cannot move horizontally")
+    @Test("A Princess can move three squares horizontally and one square vertically")
+    testCanMoveTwoHorizontalAndOneVertical() {
+        // TODO
+    }
+
+    @Test("A Princess can move three squares vertically  and one square horizontally")
+    testCanMoveTwoVerticalAndOneHorizontal() {
+        // TODO
+    }
+
+    @Test("A Princess cannot move horizontally")
     testCannotMoveHorizontally() {
         // TODO:
         // Check the following moves are impossible: moveE4_H4, moveE4_A4        
     }
 
-    @Test("A Bishop cannot move vertically")
+    @Test("A Princess cannot move vertically")
     testCannotMoveVertically() {
         // TODO:
         // Check the following moves are impossible: moveE4_E1, moveE4_E8        
     }
 
-    @Test("A Bishop can capture a piece from another color")
+    @Test("A Princess can capture a piece from another color")
     testCanCaptureDifferentColor() {
         // TODO:
         // Place a white Pawn on A8
         // Check the move moveE4_A8 is possible        
     }
 
-    @Test("A Bishop cannot capture a piece from the same color")
+    @Test("A Princess cannot capture a piece from the same color")
     testCannotCaptureSameColor() {
         // TODO:
         // Place a black Pawn on A8
         // Check the move moveE4_A8 is impossible        
     }
 
-    @Test("A Bishop cannot leap other pieces")
-    testCannotLeap() {
+    @Test("A Princess cannot leap other pieces")
+    testCannotLeapDiagonally() {
         // TODO:
         // Place a white Pawn on C6
         // Check the move moveE4_A8 is impossible       
+    }
+
+    @Test("A Princess can leap other pieces when moving in L ")
+    testCanLeapOtherPiecesWhenMovingInL() {
+        // TODO:
     }
 }

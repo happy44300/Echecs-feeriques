@@ -88,18 +88,18 @@ function isMovePossible(chessboard : Chessboard, move : Move): boolean {
     let piece : Piece = square.piece!;
 
     switch(piece) {
-        case pieces.whitePawn  : return isPossible.whitePawnMove(chessboard, move);
-        case pieces.blackPawn  : return isPossible.blackPawnMove(chessboard, move);
-        case pieces.whiteKing  : return isPossible.kingMove(chessboard, move);
-        case pieces.whiteQueen : return isPossible.queenMove(chessboard, move);
-        case pieces.whiteBishop: return isPossible.bishopMove(chessboard, move);
-        case pieces.whiteKnight: return isPossible.knightMove(chessboard, move);
-        case pieces.whiteRoock : return isPossible.rookMove(chessboard, move);
-        case pieces.blackKing  : return isPossible.kingMove(chessboard, move);
-        case pieces.blackQueen : return isPossible.queenMove(chessboard, move);
-        case pieces.blackBishop: return isPossible.bishopMove(chessboard, move);
-        case pieces.blackKnight: return isPossible.knightMove(chessboard, move);
-        case pieces.blackRoock : return isPossible.rookMove(chessboard, move);
+        case pieces.whitePawn       : return isPossible.whitePawnMove(chessboard, move);
+        case pieces.blackPawn       : return isPossible.blackPawnMove(chessboard, move);
+        case pieces.whiteKing       : return isPossible.kingMove(chessboard, move);
+        case pieces.whiteQueen      : return isPossible.queenMove(chessboard, move);
+        case pieces.whitePrincess   : return isPossible.princessMove(chessboard, move);
+        case pieces.whiteCamel      : return isPossible.camelMove(chessboard, move);
+        case pieces.whiteEmpress    : return isPossible.empressMove(chessboard, move);
+        case pieces.blackKing       : return isPossible.kingMove(chessboard, move);
+        case pieces.blackQueen      : return isPossible.queenMove(chessboard, move);
+        case pieces.blackPrincess   : return isPossible.princessMove(chessboard, move);
+        case pieces.blackCamel      : return isPossible.camelMove(chessboard, move);
+        case pieces.blackEmpress    : return isPossible.empressMove(chessboard, move);
     }
 
     return false;
