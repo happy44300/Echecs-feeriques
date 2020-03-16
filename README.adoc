@@ -1,11 +1,21 @@
-= Online Chess
+= Échecs féeriques
 
-Ce projet consiste à déployer une application web de jeu d'échecs jouable en multijoueur.
+Ce projet consiste à déployer une application web de jeu d'échecs féeriques jouable en multijoueur.
 
 == Objectifs
 
 La fin du semestre approche, il est temps de montrer tout ce que vous avez appris et de proposer au monde entier votre première application web (webapp) !
-L'objectif de ce mini-projet est d'intégrer et adapter tout le travail réalisé lors des TP et TD précédents, afin de réaliser une application de jeu d'échecs jouable (et observable) en multijoueur réseau.
+L'objectif de ce mini-projet est d'intégrer et adapter tout le travail réalisé lors des TP et TD précédents, afin de réaliser une application de jeu d'échecs féeriques jouable (et observable) en multijoueur réseau.
+
+== Les échecs féériques
+
+Le terme *échecs féeriques* désigne les variantes du jeu d'échecs, pour indiquer que les règles habituelles du jeu d'échecs ne sont pas respectées.
+Dans notre cas, notre jeu aura les pièces suivantes:
+
+- *Roi*, *Reine* et *Pion* des échecs traditionnels.
+- Le *Chameau* à la place du Chevalier. Le Chameau se déplace comme un cavalier mais avec une case supplémentaire. Il saute de trois cases horizontalement et d'une case verticalement ou de trois cases verticalement et d'une case horizontalement.
+- La *Princesse* à la place du Fou. La Princesse combine les mouvements d'un Cavalier et d'un Fou.
+- l'*Impératrice* à la place de la Tour. L'Impératrice combine les mouvements d'une Tout et d'un Fou.
 
 == Préparation
 
@@ -77,7 +87,7 @@ Utilisez la notation par coordonnées, qui inclut la place à partir de laquelle
 |Coup |Coordonnées |Description 
 
 | 1. |E2-E4 E7-E5 |Pion blanc en E2 se déplace à E4. Pion noir en E7 se déplace à E5.
-| 2. |G1-F3 B8-C6 |Cheval blanc en G1 se déplace à F3. Cheval noir en B8 se déplace à C6.
+| 2. |G1-F4 B8-C5 |Chameau  blanc en G1 se déplace à F4. Chameau noir en B8 se déplace à C5.
 |===
 
 == Fonctionnement de l'application
@@ -109,7 +119,7 @@ Le serveur traite alors la requête afin de jouer le coup demandé.
 
 La version actuelle permet le déplacement libre des pièces, sans respecter les règles des échecs.
 Pour l'instant, seuls les déplacements des pions sont validés.
-Vous devez mettre en oeuvre la validations des déplacements des autres pièces: le Roi, la Dame, le Cavalier, le Fou et la Tour. 
+Vous devez mettre en oeuvre la validations des déplacements des autres pièces: le Roi, la Dame, le Chameau, la Princesse et l'Impératrice. 
 
 Le traitement des déplacements se fait de la façon suivante:
 
@@ -129,7 +139,8 @@ Vous devez donc parcourir le module `move-validation` et implémenter les foncti
 === Tests unitaires
 
 Pour vérifier que les fonctions du module `move-validation` fonctionnent correctement, vous devez écrire des tests unitaires, qui vont vérifier que les fonctions acceptent les mouvements possibles et n'acceptent pas les mouvements impossibles.
-Les mouvements sont possibles (ou impossibles) en accord avec les https://fr.wikipedia.org/wiki/Échecs[règles des échecs].
+Les mouvements sont possibles (ou impossibles) en accord avec les https://fr.wikipedia.org/wiki/Échecs[règles des échecs],
+ainsi qu'en accord avec les 3 pièces féériques.
 Comme ces règles sont complexes, vous serez mené à écrire plusieurs tests unitaires pour vérifier les mouvements possibles et impossibles d'une même pièce.
 
 Les signatures des fonctions du module `move-validation` suivent la même convention :
@@ -154,15 +165,14 @@ Vous devez procéder par itérations successives, n'essayez pas d'implémenter l
 . Exécutez les tests pour vérifier que la fonctionnalité marche correctement et la non-régression.
 . Recommencez avec la fonctionnalité suivante.
 
-Par exemple, lorsque vous allez implémenter les fonctions qui valident le mouvement des tours (`blackRookMove()` et `whiteRookMove()`) , vous pouvez subdiviser leurs comportements en différentes fonctionnalités: 
+Par exemple, lorsque vous allez implémenter les fonctions qui valident le mouvement des Impératrices (`blackEmpressMove()` et `whiteEmpressMove()`) , vous pouvez subdiviser leurs comportements en différentes fonctionnalités: 
 
-* Validation des mouvements horizontaux, sans se préoccuper des autres pièces.
-* Validation des mouvements verticaux, toujours sans se préoccuper des autres pièces.
-* Invalidation d'des mouvements (horizontaux et verticaux) lorsque la case finale contient une pièce de même couleur.
-* Validation des mouvements (horizontaux et verticaux) qui se terminent sur une case contenant une pièce d'une couleur différente.
-* Invalidation des mouvements (horizontaux et verticaux) lorsque toutes les cases intermédiaires ne sont pas vides.
+* Validation des mouvements horizontaux, verticaux et diagonaux, sans se préoccuper des autres pièces.
+* Invalidation d'des mouvements (horizontaux, verticaux et diagonaux) lorsque la case finale contient une pièce de même couleur.
+* Validation des mouvements (horizontaux, verticaux et diagonaux) qui se terminent sur une case contenant une pièce d'une couleur différente.
+* Invalidation des mouvements (horizontaux, verticaux et diagonaux) lorsque toutes les cases intermédiaires ne sont pas vides.
 
-=== Exemple: validation des mouvements d'une tour en plusieurs étapes
+=== Exemple: validation des mouvements d'une Impératrice en plusieurs étapes
 
 ==== Etape 1
 
@@ -171,7 +181,7 @@ Commencez par la 1e fonctionnalité, la validation des déplacements horizontaux
 [source,ts]
 ----
 // Dans le fichier "move-validation.ts"
-export function rookMove(board: Chessboard, move: Move): boolean {
+export function empressMove(board: Chessboard, move: Move): boolean {
     return move.from.rank === move.to.rank; // Si les lignes de début de fin sont les mêmes, le déplacement est horizontal
 }
 ----
@@ -180,26 +190,28 @@ export function rookMove(board: Chessboard, move: Move): boolean {
 
 [source,ts]
 ----
-// Dans le fichier "rook-move-validation.spec.ts"
+// Dans le fichier "empress-move-validation.spec.ts"
 let chessboard : Chessboard;
 
-export class TestRookMoves {
+export class TestEmpressMoves {
     @Setup
     beforeEach(){
         chessboard = createEmptyChessboard();
 
         // La variable "positionE4" a été créée au début du module pour simplifier le code des tests
-        // Place une tour sur la case E4 d'un échiquier vide:
-        putPiece(chessboard, positionE4, pieces.blackPawn);
+        // Place une Impératrice sur la case E4 d'un échiquier vide:
+
+        putPiece(chessboard, positionE4, pieces.blackEmpress);
     }
 
-    @Test("A rook can move horizontally")
+    @Test("An empress can move horizontally")
     testCanMoveHorizontally() {
         // Les variable "moveE4_H4" et "moveE4_14" ont été créées au début 
         // du module pour simplifier le code des tests.
         // Le déplacement doit être possible:
-        Expect(isPossible.rookMove(chessboard, moveE4_H4)).toBeTruthy();
-        Expect(isPossible.rookMove(chessboard, moveE4_A4)).toBeTruthy();
+
+        Expect(isPossible.empressMove(chessboard, moveE4_H4)).toBeTruthy();
+        Expect(isPossible.empressMove(chessboard, moveE4_A4)).toBeTruthy();
     }
 }
 ----
@@ -207,12 +219,12 @@ export class TestRookMoves {
 ==== Etape 2
 
 Nouvelle fonctionnalité à implémenter: la validation des déplacements verticaux. 
-Modifiez la fonction `rookMove()`:
+Modifiez la fonction `empressMove()`:
 
 [source,ts]
 ----
 // Dans le fichier "move-validation.ts"
-export function rookMove(board: Chessboard, move: Move): boolean {
+export function empressMove(board: Chessboard, move: Move): boolean {
     return move.from.rank === move.to.rank || // Si les lignes de début de fin sont les mêmes, le déplacement est horizontal
         move.from.file === move.to.file;  // Si les colonnes de début de fin sont les mêmes, le déplacement est vertical
 }
@@ -222,21 +234,21 @@ export function rookMove(board: Chessboard, move: Move): boolean {
 
 [source,ts]
 ----
-// Dans le fichier "rook-move-validation.spec.ts"
+// Dans le fichier "empress-move-validation.spec.ts"
 export class TestRocoMoves {
     // (...)
 
-    @Test("A rook can move vertically")
+    @Test("An empress can move vertically")
     testCanMoveVertically() {
-        Expect(isPossible.rookMove(chessboard, moveE4_E8)).toBeTruthy();
-        Expect(isPossible.rookMove(chessboard, moveE4_E1)).toBeTruthy();
+        Expect(isPossible.empressMove(chessboard, moveE4_E8)).toBeTruthy();
+        Expect(isPossible.empressMove(chessboard, moveE4_E1)).toBeTruthy();
     }
 }
 ----
 
 ==== Autres étapes
 
-Suivez la même démarche pour implémenter et tester les autres fonctionnalités, c'est à dire, les autres mouvements possibles des tours.
+Suivez la même démarche pour implémenter et tester les autres fonctionnalités, c'est à dire, les autres mouvements possibles des Impératrices.
 
 === Rendu
 
