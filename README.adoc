@@ -15,14 +15,18 @@ Dans notre cas, notre jeu aura les pièces suivantes:
 - *Roi*, *Reine* et *Pion* des échecs traditionnels.
 - Le *Chameau* à la place du Chevalier. Le Chameau se déplace comme un cavalier mais avec une case supplémentaire. Il saute de trois cases horizontalement et d'une case verticalement ou de trois cases verticalement et d'une case horizontalement.
 - La *Princesse* à la place du Fou. La Princesse combine les mouvements d'un Cavalier et d'un Fou.
-- l'*Impératrice* à la place de la Tour. L'Impératrice combine les mouvements d'une Tout et d'un Fou.
+- L'*Impératrice* à la place de la Tour. L'Impératrice combine les mouvements d'une Tout et d'un Fou.
 
 == Préparation
 
-. Créez une divergence (en anglais, _fork_) du projet sur votre compte GitLab: https://gitlab.univ-nantes.fr/naomod/idl/projet-2019/forks/new[Cliquez ici pour créer le Fork] (Éventuellement, Gitlab vous demandera de vous connecter).
-
+. Créez une divergence (en anglais, _fork_) du projet suivant sur votre compte GitLab: https://gitlab.univ-nantes.fr/naomod/idl/projet-2019.
+. Configurez votre nouveau projet Gitlab obtenu via la divergence de la manière suivante :
+.. Dans "_Paramètres → Général_", allez dans "_Visibility, project features, permissions_", et mettez "_Project visibility_" à "_Private_".
+Ainsi, vous devenez le seul utilisateur autorisé à accéder à votre code source.
+..  Dans "_Paramètres → Membres_", ajoutez comme nouveau membre l'utilisateur virtuel appelé *Naobot*, avec le statut "_Reporter_".
+Cet utilisateur virtuel que nous controllons nous donne le droit d'accéder à votre travail et nous permettra de récupérer vos projets.
 . Créez et configurez une copie locale du projet. Ouvrez le *Terminal* et exécutez les commandes suivantes:
-
++
 [source,bash]
 ----
 git clone https://gitlab.univ-nantes.fr/${USER}/projet-2019.git
@@ -31,6 +35,7 @@ npm install
 ----
 
 . Regardez la structure du projet. Le projet est organisé en différents dossiers:
++
 [source,txt]
 ----
     |-- projet-2019
@@ -56,18 +61,19 @@ npm install
       |-- tsconfig.json
 ----
 
-* `client` contient le code Javascript qui sera exécuté sur le browser. Vous ne devez pas modifier le contenu de ce dossier.
-* `index.html` : page principale de l'application
-* `style.css` : mise en forme de l'application
-* `script.js` : algorithme(s) JavaScript côté client (affichage de l'échiquier)
-* `src/main/ts` contient le code source du serveur.
-** Dans ce dossier, vous allez modifier le fichier `move-validation.ts`.
-** *Attention:* *En aucun cas vous ne devez modifier le contenu des fichiers `chessboard.ts`, `movements.ts`, `piece.ts` et `position.ts`.*
-* `main.ts` : programme principal de création et gestion du serveur web.  Vous ne devez pas modifier le contenu de ce fichier.
-* `src/test/ts` contient les tests unitaires du serveur. Vous allez modifier le contenu de ce dossier.
-* `node_modules` contient les modules Node.js utilisés dans le projet. Vous ne devez pas modifier le contenu de ce dossier.
-* `package.json` est le fichier de configuration de *npm*. Vous n'avez pas besoin de le modifier.
-* `tsconfig.json` est le fichier de configuration de *TypeScript*. Vous n'avez pas besoin de le modifier.
+** `client` contient le code Javascript qui sera exécuté sur le browser. Vous ne devez pas modifier le contenu de ce dossier.
+** `index.html` : page principale de l'application
+** `style.css` : mise en forme de l'application
+** `script.js` : algorithme(s) JavaScript côté client (affichage de l'échiquier)
+** `src/main/ts` contient le code source du serveur.
+*** Dans ce dossier, vous allez modifier le fichier `move-validation.ts`.
+*** *Attention:* *En aucun cas vous ne devez modifier le contenu des fichiers `chessboard.ts`, `movements.ts`, `piece.ts` et `position.ts`.*
+** `main.ts` : programme principal de création et gestion du serveur web.  Vous ne devez pas modifier le contenu de ce fichier.
+** `src/test/ts` contient les tests unitaires du serveur. Vous allez modifier le contenu de ce dossier.
+** `node_modules` contient les modules Node.js utilisés dans le projet. Vous ne devez pas modifier le contenu de ce dossier.
+** `package.json` est le fichier de configuration de *npm*. Vous n'avez pas besoin de le modifier.
+** `tsconfig.json` est le fichier de configuration de *TypeScript*. Vous n'avez pas besoin de le modifier.
+
 
 == Test et lancement
 
@@ -252,24 +258,15 @@ Suivez la même démarche pour implémenter et tester les autres fonctionnalité
 
 === Rendu
 
-Vous allez pouvoir effectuer le rendu directement depuis l'interface de Gitlab, en réalisant ce qu'on appelle une *demande de fusion*.
-Cela permet de nous envoyer tous les changements que vous avez effectué sur le projet en quelques clics.
+Pour rendre le projet, il vous suffit de vous assurer d'avoir :
 
-. Assurez vous d'avoir effectué tous les _commits_ et _pushs_ nécessaires avec git.
-. Dans le panneau de gauche, cliquez sur "Demandes de fusion".
-. Cliquez sur "Nouvelle demande de fusion".
-. Vérifiez que dans la partie droite on trouve bien `naomod/idl/projet-2019` et `master`.
-. Dans la partie gauche, choisissez `&lt;votre nom d&#39;utilisateur&gt;/projet-2019` (normalement déjà choisi) et également `master`.
-. Cliquez sur "Compare branches and continue".
-. Comme titre pour la demande de fusion, indiquez "Rendu NOM1 NOM2".
-. Enfin, cliquez en bas sur "Submit demande de fusion"
+- bien effectué tous les _commits_ et _pushs_ nécessaires avec `git`,
+- bien ajouté *Naobot* comme membre _Reporter_ de votre projet,
+- bien commité et pushé tous vos changements et fichiers de travail.
 
-Vous atteignez alors une page qui résume la demande effectuée.
-Nous vous recommandons alors de cliquer sur l'onglet "_Changes_" afin d'avoir accès une une représentation visuelle de tous les changements que vous avez effectué.
-Les lignes rouges indiques ce que vous avez retiré, les lignes vertes indiquent ce que vous avez ajouté.
-Vérifiez si tout votre travail réalisé est bien présent sous la forme de lignes vertes.
+Si vous le souhaitez, vous pouvez également ajouter un fichier "`RENDU.md`" à la racine du projet, afin de décrire les spécificités de votre projet (choix techniques, parties non traitées, extensions non demandées, etc.).
 
-Si vous le souhaitez, vous pouvez ajouter un fichier "`RENDU.md`" à la racine du projet, afin de décrire les spécificités de votre projet (choix techniques, parties non traitées, extensions non demandées, etc.).
+Tant que tout cela est bien fait avant la date limite de rendu, alors tout est bon !
 
 === Derniers conseils
 
