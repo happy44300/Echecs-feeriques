@@ -41,9 +41,10 @@ npm install
 ----
     |-- projet-2019
       |-- client
-         |-- index.html
          |-- script.js
          |-- style.css
+	  |-- views
+	  	 |-- index.ejs
       |-- src
         |-- main
           |-- ts
