@@ -19,7 +19,8 @@ Dans notre cas, notre jeu aura les pièces suivantes:
 
 == Préparation
 
-. Créez une divergence (en anglais, _fork_) du projet suivant sur votre compte GitLab: https://gitlab.univ-nantes.fr/naomod/idl/projet-2019.
+. Créez une divergence (en anglais, _fork_) du projet suivant sur votre compte GitLab: 
+https://gitlab.univ-nantes.fr/naomod/idl/projet-2019/-/forks/new
 . Configurez votre nouveau projet Gitlab obtenu via la divergence de la manière suivante :
 .. Dans "_Paramètres → Général_", allez dans "_Visibility, project features, permissions_", et mettez "_Project visibility_" à "_Private_".
 Ainsi, vous devenez le seul utilisateur autorisé à accéder à votre code source.
