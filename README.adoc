@@ -43,8 +43,8 @@ npm install
       |-- client
          |-- script.js
          |-- style.css
-	  |-- views
-	  	 |-- index.ejs
+      |-- views
+         |-- index.ejs
       |-- src
         |-- main
           |-- ts
