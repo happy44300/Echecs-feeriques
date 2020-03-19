@@ -132,7 +132,7 @@ export function princessMove(board: Chessboard, move: Move): boolean {
  * three squares vertically and one square horizontally, or three 
  * squares horizontally and one square vertically.) 
  * 
- * The camel is the only piece that can leap over other pieces.
+ * The camel can leap over other pieces.
  * 
  * @param board The chessboard of the current game
  * @param move 

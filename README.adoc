@@ -77,6 +77,23 @@ npm install
 ** `tsconfig.json` est le fichier de configuration de *TypeScript*. Vous n'avez pas besoin de le modifier.
 
 
+=== Mise à jour du projet
+
+Les erreurs ou manques de précision du projet seront corrigées dès que possible.
+Cela impliquera la mise à jour des vos divergences pour récupérer les changements.
+Pour cela, vous devez faire:
+
+```sh
+git remote add upstream https://gitlab.univ-nantes.fr/naomod/idl/projet-2019.git
+git fetch upstream
+git rebase upstream/master
+```
+
+* La première ligne ajoute le dépot originel et le nomme "upstream"
+* La deuxième ligne récupère les changements, sans les fusionner
+* La troisième ligne fusione les changements avec votre divergence
+
+
 == Test et lancement
 
 * Le projet utilise l'outil de construction et de gestion de modules *npm*.
