@@ -15,7 +15,7 @@ Dans notre cas, notre jeu aura les pièces suivantes:
 - *Roi*, *Reine* et *Pion* des échecs traditionnels.
 - Le *Chameau* à la place du Chevalier. Le Chameau se déplace comme un cavalier mais avec une case supplémentaire. Il saute de trois cases horizontalement et d'une case verticalement ou de trois cases verticalement et d'une case horizontalement.
 - La *Princesse* à la place du Fou. La Princesse combine les mouvements d'un Cavalier et d'un Fou.
-- L'*Impératrice* à la place de la Tour. L'Impératrice combine les mouvements d'une Tout et d'un Fou.
+- L'*Impératrice* à la place de la Tour. L'Impératrice combine les mouvements d'une Tour et d'un Chevalier.
 
 == Préparation
 

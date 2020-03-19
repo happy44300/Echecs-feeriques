@@ -94,8 +94,12 @@ export function queenMove(board: Chessboard, move: Move): boolean {
 
 /**
  * Checks whether a Empress can perform a given move.
- * An empress can move any number of squares along a rank or file, 
- * but cannot leap over other pieces. 
+ * An Empress can move any number of squares along a rank or file, 
+ * but cannot leap over other pieces.
+ * An Empress can also move to any of the closest squares that are not on the 
+ * same rank, file, or diagonal. (Thus the move forms an "L"-shape: 
+ * two squares vertically and one square horizontally, or two 
+ * squares horizontally and one square vertically.) 
  * 
  * @param board The chessboard of the current game
  * @param move 
