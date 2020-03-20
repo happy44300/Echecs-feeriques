@@ -10,13 +10,11 @@ import { equals, left, right, top, bottom } from "./position";
  * diagram); or the pawn can capture an opponent's piece on a square diagonally 
  * in front of it on an adjacent file, by moving to that square (black "x"s). 
  * 
- * A pawn has two special moves: the en passant capture and promotion.
  * 
  * @param board The chessboard of the current game
  * @param move 
  */
 export function blackPawnMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Manage special 'En passant' move.
 
     if (equals(move.to!, bottom(move.from!))) {
         //console.log("Single forward");
@@ -43,13 +41,11 @@ export function blackPawnMove(board: Chessboard, move: Move): boolean {
  * the diagram); or the pawn can capture an opponent's piece on a square diagonally 
  * in front of it on an adjacent file, by moving to that square (black "x"s). 
  * 
- * A pawn has two special moves: the en passant capture and promotion.
  * 
  * @param board The chessboard of the current game
  * @param move 
  */
 export function whitePawnMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Manage special 'En passant' move.
 
     if (equals(move.to!, top(move.from!))) {
         return isEmpty(board, move.to!);
