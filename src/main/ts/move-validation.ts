@@ -70,8 +70,42 @@ export function whitePawnMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function kingMove(board: Chessboard, move: Move): boolean {
+export function blackKingMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
+    //distance on x and y must be < 1
+    let rankDist = Math.abs(move.from!.rank -move.to!.rank);
+    let fileDist = Math.abs(move.from!.file -move.to!.file);
+    //x
+    if(move.from!.rank === move.to!.rank && fileDist <= 1){ 
+        return isEmpty(board, move.to!);
+    }
+    //y
+    if(move.from!.file === move.to!.file && fileDist <= 1){ 
+        return isEmpty(board, move.to!);
+    }
+    //diagonale
+    if(move.from!.rank === move.to!.rank && fileDist <= 1 && move.from!.file && rankDist <= 1){ 
+        return isEmpty(board, move.to!);
+    }
+    return true;
+}
+export function whiteKingMove(board: Chessboard, move: Move): boolean {
+    // #TODO: Implement this function
+    //distance on x and y must be < 1
+    let rankDist = Math.abs(move.from!.rank -move.to!.rank);
+    let fileDist = Math.abs(move.from!.file -move.to!.file);
+    //x
+    if(move.from!.rank === move.to!.rank && fileDist <= 1){ 
+        return isEmpty(board, move.to!);
+    }
+    //y
+    if(move.from!.file === move.to!.file && fileDist <= 1){ 
+        return isEmpty(board, move.to!);
+    }
+    //diagonale
+    if(move.from!.rank === move.to!.rank && fileDist <= 1 && move.from!.file && rankDist <= 1){ 
+        return isEmpty(board, move.to!);
+    }
     return true;
 }
 
@@ -83,7 +117,12 @@ export function kingMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function queenMove(board: Chessboard, move: Move): boolean {
+export function blackQueenMove(board: Chessboard, move: Move): boolean {
+    // #TODO: Implement this function
+    return true;
+
+}
+export function whiteQueenMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 }
@@ -100,7 +139,11 @@ export function queenMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function empressMove(board: Chessboard, move: Move): boolean {
+export function blackEmpressMove(board: Chessboard, move: Move): boolean {
+    // #TODO: Implement this function
+    return true;
+}
+export function whiteEmpressMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 }
@@ -117,10 +160,15 @@ export function empressMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function princessMove(board: Chessboard, move: Move): boolean {
+export function blackPrincessMove(board: Chessboard, move: Move): boolean {
+    // #TODO: Implement this function
+    return true;
+
+}export function whitePrincessMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 }
+
 
 /**
  * Checks whether a Camel can perform a given move.
@@ -133,7 +181,7 @@ export function princessMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function camelMove(board: Chessboard, move: Move): boolean {
+export function blackCamelMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 } 
