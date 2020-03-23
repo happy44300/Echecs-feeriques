@@ -18,12 +18,12 @@ export class TestPrincessMoves {
         // moveE4_A8, moveE4_B1, moveE4_H7, moveE4_H1        
     }
 
-    @Test("A Princess can move three squares horizontally and one square vertically")
+    @Test("A Princess can move two squares horizontally and one square vertically")
     testCanMoveTwoHorizontalAndOneVertical() {
         // TODO
     }
 
-    @Test("A Princess can move three squares vertically  and one square horizontally")
+    @Test("A Princess can move two squares vertically  and one square horizontally")
     testCanMoveTwoVerticalAndOneHorizontal() {
         // TODO
     }

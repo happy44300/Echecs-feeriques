@@ -21,7 +21,7 @@ export class TestKingMoves {
     @Test("A King cannot move more than 1 square")
     testCannotMoveMoreThanOneSquare() {
         // TODO:
-        // Check it cannot move to squares C2, C3, C4, C6, D4, and F4
+        // Check it cannot move to squares C2, C3, C4, C6, E2, E6, G2, G4, and G6
  
     }
 
