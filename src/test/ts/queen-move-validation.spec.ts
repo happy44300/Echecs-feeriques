@@ -90,7 +90,6 @@ const moveE4_B2: Move = move(positionE4, positionB2);
 export class TestQueenMoves {
     @Setup
     beforeEach() {
-        // TODO:
         // Initialize an empty chessboard
         // Place a white Queen on E4
         chessboard = createEmptyChessboard();
@@ -99,7 +98,6 @@ export class TestQueenMoves {
 
     @Test("A Queen can move diagonally")
     testCanMoveDiagonally() {
-        // TODO:
         // Check the following moves are possible: 
         // moveE4_A8, moveE4_B1, moveE4_H7, moveE4_H1
         let A8: Move = { from: positionE4, to: positionA8, isValid: true };
@@ -110,13 +108,12 @@ export class TestQueenMoves {
         Expect(isPossible.queenMove(chessboard, B1)).toBeTruthy();
         Expect(isPossible.queenMove(chessboard, H7)).toBeTruthy();
         Expect(isPossible.queenMove(chessboard, H1)).toBeTruthy();
-       
+
 
     }
 
     @Test("A Queen can move horizontally")
     testCanMoveHorizontally() {
-        // TODO:
         // Check the following moves are possible: moveE4_H4, moveE4_A4
         let H4: Move = { from: positionE4, to: positionH4, isValid: true };
         let A4: Move = { from: positionE4, to: positionA4, isValid: true };
@@ -127,7 +124,6 @@ export class TestQueenMoves {
 
     @Test("A Queen can move vertically")
     testCanMoveVertically() {
-        // TODO:
         // Check the following moves are possible: moveE4_E1, moveE4_E8
         let E1: Move = { from: positionE4, to: positionE1, isValid: true };
         let E8: Move = { from: positionE4, to: positionE8, isValid: true };
@@ -138,7 +134,6 @@ export class TestQueenMoves {
 
     @Test("A Queen can only move horizontally, vertically, and diagonally")
     testForbiddenMoves() {
-        // TODO:
         // Check the following moves are impossible: moveE4_C7, moveE4_B2
         let C7: Move = { from: positionE4, to: positionC7, isValid: true };
         let B2: Move = { from: positionE4, to: positionB2, isValid: true };
@@ -149,7 +144,6 @@ export class TestQueenMoves {
 
     @Test("A Queen cannot leap other pieces")
     testCannotLeap() {
-        // TODO:
         // Place a white Pawn on C6 and  a black Pawn on F4
         // Check the moves moveE4_A8 and moveE4_H4 are impossible
         putPiece(chessboard, positionC6, pieces.whitePawn);
@@ -162,7 +156,6 @@ export class TestQueenMoves {
 
     @Test("A Queen cannot capure pieces from the same color")
     testCannotCaptureSameColor() {
-        // TODO:
         // Place a white Pawn on H4
         // Check the move moveE4_H4 is impossible
         putPiece(chessboard, positionH4, pieces.whitePawn);
@@ -172,7 +165,6 @@ export class TestQueenMoves {
 
     @Test("A Queen can capure pieces from a different color")
     testCanCaptureDifferentColor() {
-        // TODO:
         // Place a black Pawn on H4
         // Check the move moveE4_H4 is possible
         putPiece(chessboard, positionH4, pieces.blackPawn);

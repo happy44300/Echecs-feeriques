@@ -156,49 +156,54 @@ export function princessMove(board: Chessboard, move: Move): boolean {
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
 
-    //null check
+    //check if there is a piece on the square and make it opposite
     if (pieceAtPosition(board, move.to!) === undefined) {
         destinationIsWhite = !pieceIsWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
-    
+
+    //camel move
     if (absRankDiff == 2 && absfileDiff == 1) { return pieceIsWhite != destinationIsWhite; }
     if (absRankDiff == 1 && absfileDiff == 2) { return pieceIsWhite != destinationIsWhite; }
 
+    //diagonal move
     if (absRankDiff == absfileDiff) {
         for (let i = 1; i < absRankDiff; i++) {
+
             let xPos = move.from!.rank;
             let yPos = move.from!.file;
 
             //(1,1)
             if (rankDiff > 0 && fileDiff > 0) {
-                //console.log(xPos,yPos);
-                console.log(absRankDiff);
                 xPos += i;
                 yPos += i;
-                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
-                //(1,-1)
-            } else if (rankDiff > 0 && fileDiff < 0) {
-                xPos -= i;
-                yPos += i;
-                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
-                //(-1,1)
-            } else if (rankDiff < 0 && fileDiff > 0) {
-                xPos -= i;
-                yPos += i;
-                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return false; }
+            }
+            //(1,-1) 
+            else if (rankDiff > 0 && fileDiff < 0) {
+                xPos += i;
+                yPos -= i;
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return false; }
 
-                //(-1,-1)
-            } else if (rankDiff < 0 && fileDiff < 0) {
+            }
+            //(-1,1)
+            else if (rankDiff < 0 && fileDiff > 0) {
+                xPos -= i;
+                yPos += i;
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return false; }
+            }
+            //(-1,-1)
+            else if (rankDiff < 0 && fileDiff < 0) {
                 xPos -= i;
                 yPos -= i;
-                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return false; }
             }
 
 
         }
-        return true;
+        //eat check
+        return pieceIsWhite != destinationIsWhite;
     }
     return false;
 }

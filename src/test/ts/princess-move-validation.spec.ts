@@ -115,21 +115,18 @@ export class TestPrincessMoves {
 
     @Test("A Princess can move two squares horizontally and one square vertically")
     testCanMoveTwoHorizontalAndOneVertical() {
-        // TODO
         let C5: Move = { from: positionE4, to: positionC5, isValid: true };
         Expect(isPossible.princessMove(chessboard, C5)).toBeTruthy();
     }
 
     @Test("A Princess can move two squares vertically  and one square horizontally")
     testCanMoveTwoVerticalAndOneHorizontal() {
-        // TODO
         let D6: Move = { from: positionE4, to: positionD6, isValid: true };
         Expect(isPossible.princessMove(chessboard, D6)).toBeTruthy();
     }
 
     @Test("A Princess cannot move horizontally")
     testCannotMoveHorizontally() {
-        // TODO:
         // Check the following moves are impossible: moveE4_H4, moveE4_A4
         let H4: Move = { from: positionE4, to: positionH4, isValid: true };
         let A4: Move = { from: positionE4, to: positionA4, isValid: true };
@@ -140,7 +137,6 @@ export class TestPrincessMoves {
 
     @Test("A Princess cannot move vertically")
     testCannotMoveVertically() {
-        // TODO:
         // Check the following moves are impossible: moveE4_E1, moveE4_E8
         let E1: Move = { from: positionE4, to: positionE1, isValid: true };
         let E8: Move = { from: positionE4, to: positionE8, isValid: true };
@@ -152,37 +148,33 @@ export class TestPrincessMoves {
 
     @Test("A Princess can capture a piece from another color")
     testCanCaptureDifferentColor() {
-        // TODO:
         // Place a white Pawn on A8
         // Check the move moveE4_A8 is possible 
         putPiece(chessboard, positionA8, pieces.whitePawn);
-        let Capture: Move = {from: positionE4, to: positionA8, isValid: true};
-        Expect(isPossible.princessMove(chessboard, Capture )).toBeTruthy();      
+        let Capture: Move = { from: positionE4, to: positionA8, isValid: true };
+        Expect(isPossible.princessMove(chessboard, Capture)).toBeTruthy();
     }
 
     @Test("A Princess cannot capture a piece from the same color")
     testCannotCaptureSameColor() {
-        // TODO:
         // Place a black Pawn on A8
         // Check the move moveE4_A8 is impossible
         putPiece(chessboard, positionA8, pieces.blackPawn);
-        let Capture: Move = {from: positionE4, to: positionA8, isValid: true};
-        Expect(isPossible.princessMove(chessboard, Capture )).not.toBeTruthy();     
+        let Capture: Move = { from: positionE4, to: positionA8, isValid: true };
+        Expect(isPossible.princessMove(chessboard, Capture)).not.toBeTruthy();
     }
 
     @Test("A Princess cannot leap other pieces")
     testCannotLeapDiagonally() {
-        // TODO:
         // Place a white Pawn on C6
         // Check the move moveE4_A8 is impossible
         putPiece(chessboard, positionC6, pieces.blackPawn);
-        let Capture: Move = {from: positionE4, to: positionA8, isValid: true};
-        Expect(isPossible.princessMove(chessboard, Capture )).not.toBeTruthy();
+        let Capture: Move = { from: positionE4, to: positionA8, isValid: true };
+        Expect(isPossible.princessMove(chessboard, Capture)).not.toBeTruthy();
     }
 
     @Test("A Princess can leap other pieces when moving in L ")
     testCanLeapOtherPiecesWhenMovingInL() {
-        // TODO:
         putPiece(chessboard, positionF2, pieces.whitePawn);
 
         let leapL: Move = { from: positionE4, to: positionF3, isValid: true }

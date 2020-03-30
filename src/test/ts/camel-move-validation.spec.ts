@@ -44,8 +44,8 @@ const positionE5: Position = position(4, 4) // E5
 const positionE8: Position = position(4, 7) // E8
 
 const positionF1: Position = position(5, 0) // F1
-const 
-positionF2: Position = position(5, 1) // F2
+const
+    positionF2: Position = position(5, 1) // F2
 const positionF3: Position = position(5, 2) // F3
 const positionF4: Position = position(5, 3) // F4
 const positionF5: Position = position(5, 4) // F1
@@ -92,7 +92,6 @@ const moveE4_B2: Move = move(positionE4, positionB2);
 export class TestcamelMoves {
     @Setup
     beforeEach() {
-        // TODO:
         // Initialize an empty chessboard
         // Place a white Camel on E4
         chessboard = createEmptyChessboard();
@@ -101,7 +100,6 @@ export class TestcamelMoves {
 
     @Test("A Camel can move three squares horizontally and one square vertically")
     testCanMoveThreeHorizontalAndOneVertical() {
-        // TODO:
         // Check the following moves are possible:
         // - moveE4_H3
         // - moveE4_H5
@@ -121,7 +119,6 @@ export class TestcamelMoves {
 
     @Test("A Camel can move three squares vertically and one square horizontally")
     testCanMoveThreeVerticalAndOneHorizontal() {
-        // TODO:
         // Check the following moves are possible:
         // - moveE4_F1
         // - moveE4_F7
@@ -141,7 +138,6 @@ export class TestcamelMoves {
 
     @Test("A Camel can leap other pieces")
     testCanLeapOtherPieces() {
-        // TODO:
         putPiece(chessboard, positionF2, pieces.whitePawn);
 
         let Capture: Move = { from: positionE4, to: positionF1, isValid: true }
@@ -150,28 +146,24 @@ export class TestcamelMoves {
 
     @Test("A Camel cannot move diagonally")
     testCannotMoveDiagonally() {
-        // TODO:
         let Diagonal: Move = { from: positionE4, to: positionF5, isValid: true };
         Expect(isPossible.camelMove(chessboard, Diagonal)).toBe(false);
     }
 
     @Test("A Camel cannot move horizontally")
     testCannotMoveHorizontally() {
-        // TODO:
         let Horizontal: Move = { from: positionE4, to: positionF4, isValid: true };
         Expect(isPossible.camelMove(chessboard, Horizontal)).toBe(false);
     }
 
     @Test("A Camel cannot move vertically")
     testCannotMoveVertically() {
-        // TODO:
         let vertical: Move = { from: positionE4, to: positionE5, isValid: true };
         Expect(isPossible.camelMove(chessboard, vertical)).toBe(false);
     }
 
     @Test("A Camel can capture a piece from another color")
     testCanCaptureAnotherColor() {
-        // TODO:
         putPiece(chessboard, positionF1, pieces.whiteKing);
 
         let Capture: Move = { from: positionE4, to: positionF1, isValid: true }
@@ -180,7 +172,6 @@ export class TestcamelMoves {
 
     @Test("A Camel cannot capture a piece from the same color")
     testCannotCaptureSameColor() {
-        // TODO:
         putPiece(chessboard, positionF1, pieces.blackCamel);
 
         let Capture: Move = { from: positionE4, to: positionF1, isValid: true }

@@ -40,6 +40,7 @@ const positionE2: Position = position(4, 1) // E2
 const positionE3: Position = position(4, 2) // E3
 const positionE4: Position = position(4, 3) // E4
 const positionE5: Position = position(4, 4) // E5
+const positionE6: Position = position(4, 5) // E6
 
 const positionE8: Position = position(4, 7) // E8
 
@@ -50,8 +51,12 @@ const positionF4: Position = position(5, 3) // F4
 const positionF5: Position = position(5, 4) // F1
 const positionF6: Position = position(5, 5) // F6
 const positionF7: Position = position(5, 6) // F7
+
+const positionG2: Position = position(6, 1) // G2
 const positionG3: Position = position(6, 2) // G3
+const positionG4: Position = position(6, 3) // G4
 const positionG5: Position = position(6, 4) // G5
+const positionG6: Position = position(6, 5) // G6
 
 const positionH1: Position = position(7, 0) // H1
 const positionH3: Position = position(7, 2) // H3
@@ -90,7 +95,6 @@ export class TestkingMoves {
 
     @Setup
     beforeEach() {
-        // TODO:
         // Initialize an empty chessboard
         // Place a black King on E4
         chessboard = createEmptyChessboard();
@@ -99,7 +103,6 @@ export class TestkingMoves {
 
     @Test("A King can move 1 square in all directions")
     testCanMoveOneSquare() {
-        // TODO:
         // Check it can move to squares D3, D4, D5, E3, E5, F3, F4, and F5
         let singleLeft: Move = { from: positionE4, to: positionD4, isValid: true };
         let diagonalLeftdown: Move = { from: positionE4, to: positionD3, isValid: true };
@@ -125,42 +128,44 @@ export class TestkingMoves {
 
     @Test("A King cannot move more than 1 square")
     testCannotMoveMoreThanOneSquare() {
-        // TODO:
-        throw "need rework";
         // Check it cannot move to squares C2, C3, C4, C6, E2, E6, G2, G4, and G6
         let C2: Move = { from: positionE4, to: positionC2, isValid: true };
         let C3: Move = { from: positionE4, to: positionC3, isValid: true };
         let C4: Move = { from: positionE4, to: positionC4, isValid: true };
         let C6: Move = { from: positionE4, to: positionC6, isValid: true };
-        let D4: Move = { from: positionE4, to: positionD4, isValid: true };
-        let F4: Move = { from: positionE4, to: positionF4, isValid: true };
+        let E2: Move = { from: positionE4, to: positionE2, isValid: true };
+        let E6: Move = { from: positionE4, to: positionE6, isValid: true };
+        let G2: Move = { from: positionE4, to: positionG2, isValid: true };
+        let G4: Move = { from: positionE4, to: positionG4, isValid: true };
+        let G6: Move = { from: positionE4, to: positionG6, isValid: true };
         Expect(isPossible.kingMove(chessboard, C2)).toBeTruthy();
         Expect(isPossible.kingMove(chessboard, C3)).toBeTruthy();
         Expect(isPossible.kingMove(chessboard, C4)).toBeTruthy();
         Expect(isPossible.kingMove(chessboard, C6)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, D4)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, F4)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, E2)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, E6)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, G2)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, G4)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, G6)).toBeTruthy();
 
 
     }
 
     @Test("A King cannot capure pieces from the same color")
     testCannotCaptureSameColor() {
-        // TODO:
         // Place a black Pawn on E5
         // Check the King cannot move to E5.
         putPiece(chessboard, positionE5, pieces.blackPawn);
-        let Capture: Move = {from: positionE4, to: positionE5, isValid: true};
-        Expect(isPossible.kingMove(chessboard, Capture )).not.toBeTruthy();
+        let Capture: Move = { from: positionE4, to: positionE5, isValid: true };
+        Expect(isPossible.kingMove(chessboard, Capture)).not.toBeTruthy();
     }
 
     @Test("A King can capure pieces from a different color")
     testCanCaptureSameColor() {
-        // TODO:
         // Place a white Pawn on E5
         // Check the King can move to E5.
         putPiece(chessboard, positionE5, pieces.whitePawn);
-        let Capture: Move = {from: positionE4, to: positionE5, isValid: true};
-        Expect(isPossible.kingMove(chessboard, Capture )).toBeTruthy();
+        let Capture: Move = { from: positionE4, to: positionE5, isValid: true };
+        Expect(isPossible.kingMove(chessboard, Capture)).toBeTruthy();
     }
 }
