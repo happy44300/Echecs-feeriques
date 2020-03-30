@@ -1,6 +1,7 @@
-import { Chessboard, isEmpty, Square, squareAtPosition } from "./chessboard";
+import { Chessboard, isEmpty, Square, squareAtPosition, pieceAtPosition } from "./chessboard";
 import { Move } from "./movements";
 import { equals, left, right, top, bottom } from "./position";
+import { Piece } from "./piece";
 
 /**
  * Checks whether a Black Pawn can perform a given move.
@@ -70,44 +71,37 @@ export function whitePawnMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function blackKingMove(board: Chessboard, move: Move): boolean {
+export function kingMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     //distance on x and y must be < 1
-    let rankDist = Math.abs(move.from!.rank -move.to!.rank);
-    let fileDist = Math.abs(move.from!.file -move.to!.file);
+    let rankDist: number = Math.abs(move.from!.rank - move.to!.rank);
+    let fileDist: number = Math.abs(move.from!.file - move.to!.file);
+    let pieceIsWhite: boolean = pieceAtPosition(board, move.from!).isWhite;
+    let destination: Square = squareAtPosition(board, move.to!);
+    let destinationIsWhite: boolean;
+
+    //null check
+    if (pieceAtPosition(board, move.to!) === undefined) {
+        destinationIsWhite = !pieceIsWhite;
+    } else {
+        destinationIsWhite = destination.piece!.isWhite;
+    }
+
     //x
-    if(move.from!.rank === move.to!.rank && fileDist <= 1){ 
-        return isEmpty(board, move.to!);
+    if (move.from!.rank === move.to!.rank && fileDist <= 1) {
+        return isEmpty(board, move.to!) || pieceIsWhite != destinationIsWhite;
     }
     //y
-    if(move.from!.file === move.to!.file && fileDist <= 1){ 
-        return isEmpty(board, move.to!);
+    if (move.from!.file === move.to!.file && fileDist <= 1) {
+        return isEmpty(board, move.to!) || pieceIsWhite != destinationIsWhite;
     }
     //diagonale
-    if(move.from!.rank === move.to!.rank && fileDist <= 1 && move.from!.file && rankDist <= 1){ 
-        return isEmpty(board, move.to!);
+    if (move.from!.rank === move.to!.rank && fileDist <= 1 && move.from!.file && rankDist <= 1) {
+        return isEmpty(board, move.to!) || pieceIsWhite != destinationIsWhite;
     }
     return true;
 }
-export function whiteKingMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    //distance on x and y must be < 1
-    let rankDist = Math.abs(move.from!.rank -move.to!.rank);
-    let fileDist = Math.abs(move.from!.file -move.to!.file);
-    //x
-    if(move.from!.rank === move.to!.rank && fileDist <= 1){ 
-        return isEmpty(board, move.to!);
-    }
-    //y
-    if(move.from!.file === move.to!.file && fileDist <= 1){ 
-        return isEmpty(board, move.to!);
-    }
-    //diagonale
-    if(move.from!.rank === move.to!.rank && fileDist <= 1 && move.from!.file && rankDist <= 1){ 
-        return isEmpty(board, move.to!);
-    }
-    return true;
-}
+
 
 /**
  * Checks whether a Queen can perform a given move.
@@ -117,15 +111,11 @@ export function whiteKingMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function blackQueenMove(board: Chessboard, move: Move): boolean {
+export function queenMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
+}
 
-}
-export function whiteQueenMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    return true;
-}
 
 /**
  * Checks whether a Empress can perform a given move.
@@ -139,11 +129,7 @@ export function whiteQueenMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function blackEmpressMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    return true;
-}
-export function whiteEmpressMove(board: Chessboard, move: Move): boolean {
+export function empressMove(board: Chessboard, move: Move): boolean {
     // #TODO: Implement this function
     return true;
 }
@@ -160,15 +146,62 @@ export function whiteEmpressMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function blackPrincessMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    return true;
+export function princessMove(board: Chessboard, move: Move): boolean {
 
-}export function whitePrincessMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    return true;
+    let rankDiff: number = move.to!.rank - move.from!.rank;
+    let fileDiff: number = move.to!.file - move.from!.file;
+    let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
+    let absfileDiff: number = Math.abs(move.to!.file - move.from!.file);
+    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let destination: Square = squareAtPosition(board, move.to!);
+    let destinationIsWhite: boolean;
+
+    //null check
+    if (pieceAtPosition(board, move.to!) === undefined) {
+        destinationIsWhite = !pieceIsWhite;
+    } else {
+        destinationIsWhite = destination.piece!.isWhite;
+    }
+    
+    if (absRankDiff == 2 && absfileDiff == 1) { return pieceIsWhite != destinationIsWhite; }
+    if (absRankDiff == 1 && absfileDiff == 2) { return pieceIsWhite != destinationIsWhite; }
+
+    if (absRankDiff == absfileDiff) {
+        for (let i = 1; i < absRankDiff; i++) {
+            let xPos = move.from!.rank;
+            let yPos = move.from!.file;
+
+            //(1,1)
+            if (rankDiff > 0 && fileDiff > 0) {
+                //console.log(xPos,yPos);
+                console.log(absRankDiff);
+                xPos += i;
+                yPos += i;
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
+                //(1,-1)
+            } else if (rankDiff > 0 && fileDiff < 0) {
+                xPos -= i;
+                yPos += i;
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
+                //(-1,1)
+            } else if (rankDiff < 0 && fileDiff > 0) {
+                xPos -= i;
+                yPos += i;
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
+
+                //(-1,-1)
+            } else if (rankDiff < 0 && fileDiff < 0) {
+                xPos -= i;
+                yPos -= i;
+                if (!isEmpty(board, { rank: xPos, file: yPos })) { return pieceIsWhite != destinationIsWhite; }
+            }
+
+
+        }
+        return true;
+    }
+    return false;
 }
-
 
 /**
  * Checks whether a Camel can perform a given move.
@@ -181,7 +214,79 @@ export function blackPrincessMove(board: Chessboard, move: Move): boolean {
  * @param board The chessboard of the current game
  * @param move 
  */
-export function blackCamelMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    return true;
-} 
+export function camelMove(board: Chessboard, move: Move): boolean {
+    // #TODO: Implement color
+
+    let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
+    let absfileDiff: number = Math.abs(move.to!.file - move.from!.file);
+    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let destination: Square = squareAtPosition(board, move.to!);
+    let destinationIsWhite: boolean;
+
+    //null check
+    if (pieceAtPosition(board, move.to!) === undefined) {
+        destinationIsWhite = !pieceIsWhite;
+    } else {
+        destinationIsWhite = destination.piece!.isWhite;
+    }
+    if (absRankDiff == 3 && absfileDiff == 1) { return pieceIsWhite != destinationIsWhite; }
+    if (absRankDiff == 1 && absfileDiff == 3) { return pieceIsWhite != destinationIsWhite; }
+
+    return false;
+}
+
+//x
+//     if (fileDiff == 0) {
+
+//         isForward = (move.from!.rank < move.to!.rank);
+
+//         if (isForward) {
+//             for (let checkedSquare: number = move.from!.rank + 1; checkedSquare < move.to!.rank; checkedSquare++) {
+//                 if (isEmpty(board, { rank: checkedSquare, file: move.from!.file })) {
+//                     //pass
+//                 } else {
+//                     return false;
+//                 }
+//             }
+//             return true;
+//         }
+//         else {
+//             for (let checkedSquare: number = move.from!.rank - 1; checkedSquare > move.to!.rank; checkedSquare--) {
+//                 if (isEmpty(board, { rank: checkedSquare, file: move.from!.file })) {
+//                     //pass
+//                 } else {
+//                     return false;
+//                 }
+//             }
+//             return true;
+//         }
+//     }
+
+//     if (rankDiff == 0) {
+
+//         isForward = move.from!.file < move.to!.file;
+
+//         if (isForward) {
+//             for (let checkedSquare: number = move.from!.file + 1; checkedSquare < move.to!.file; checkedSquare++) {
+//                 if (isEmpty(board, { rank: move.from!.rank, file: checkedSquare })) {
+//                     //pass
+//                 } else {
+//                     return false;
+//                 }
+//             }
+//             return true;
+//         }
+//         else {
+//             for (let checkedSquare: number = move.from!.file - 1; checkedSquare > move.to!.file; checkedSquare--) {
+//                 if (isEmpty(board, { rank: move.from!.rank, file: checkedSquare })) {
+//                     //pass
+//                 } else {
+//                     return false;
+//                 }
+
+//             }
+//             return true;
+//         }
+//     }
+//    return false
+// }

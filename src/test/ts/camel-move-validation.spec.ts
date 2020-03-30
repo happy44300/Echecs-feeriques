@@ -1,4 +1,4 @@
-import { Expect, Test, Setup } from "alsatian";
+import { Expect, Test, Setup, Ignore } from "alsatian";
 import * as isPossible from '../../main/ts/move-validation'
 import * as pieces from '../../main/ts/piece'
 import { Chessboard, createEmptyChessboard, putPiece } from '../../main/ts/chessboard';
@@ -44,7 +44,8 @@ const positionE5: Position = position(4, 4) // E5
 const positionE8: Position = position(4, 7) // E8
 
 const positionF1: Position = position(5, 0) // F1
-const positionF2: Position = position(5, 1) // F2
+const 
+positionF2: Position = position(5, 1) // F2
 const positionF3: Position = position(5, 2) // F3
 const positionF4: Position = position(5, 3) // F4
 const positionF5: Position = position(5, 4) // F1
@@ -87,14 +88,15 @@ const moveE4_D7: Move = move(positionE4, positionD7);
 const moveE4_C7: Move = move(positionE4, positionC7);
 const moveE4_B2: Move = move(positionE4, positionB2);
 
-export class TestCamelMoves {
+//@Ignore("Not implemented yet")
+export class TestcamelMoves {
     @Setup
     beforeEach() {
         // TODO:
         // Initialize an empty chessboard
         // Place a white Camel on E4
         chessboard = createEmptyChessboard();
-        putPiece(chessboard, positionE4, pieces.blackKing);
+        putPiece(chessboard, positionE4, pieces.blackCamel);
     }
 
     @Test("A Camel can move three squares horizontally and one square vertically")
@@ -105,14 +107,14 @@ export class TestCamelMoves {
         // - moveE4_H5
         // - moveE4_B3
         // - moveE4_B5
-        let G3: Move = { from: positionE4, to: positionG3, isValid: true };
-        let G5: Move = { from: positionE4, to: positionG5, isValid: true };
-        let C3: Move = { from: positionE4, to: positionC3, isValid: true };
-        let C5: Move = { from: positionE4, to: positionC5, isValid: true };
-        Expect(isPossible.blackCamelMove(chessboard, G3)).toBeTruthy();
-        Expect(isPossible.blackCamelMove(chessboard, G5)).toBeTruthy();
-        Expect(isPossible.blackCamelMove(chessboard, C3)).toBeTruthy();
-        Expect(isPossible.blackCamelMove(chessboard, C5)).toBeTruthy();
+        let H3: Move = { from: positionE4, to: positionH3, isValid: true };
+        let H5: Move = { from: positionE4, to: positionH5, isValid: true };
+        let B3: Move = { from: positionE4, to: positionB3, isValid: true };
+        let B5: Move = { from: positionE4, to: positionB5, isValid: true };
+        Expect(isPossible.camelMove(chessboard, H3)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, H5)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, B3)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, B5)).toBeTruthy();
 
 
     }
@@ -129,10 +131,10 @@ export class TestCamelMoves {
         let F7: Move = { from: positionE4, to: positionF7, isValid: true };
         let D1: Move = { from: positionE4, to: positionD1, isValid: true };
         let D7: Move = { from: positionE4, to: positionD7, isValid: true };
-        Expect(isPossible.blackCamelMove(chessboard, F1)).toBeTruthy();
-        Expect(isPossible.blackCamelMove(chessboard, F7)).toBeTruthy();
-        Expect(isPossible.blackCamelMove(chessboard, D1)).toBeTruthy();
-        Expect(isPossible.blackCamelMove(chessboard, D7)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, F1)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, F7)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, D1)).toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, D7)).toBeTruthy();
 
 
     }
@@ -142,46 +144,46 @@ export class TestCamelMoves {
         // TODO:
         putPiece(chessboard, positionF2, pieces.whitePawn);
 
-        let Capture: Move = { from: positionE4, to: positionF2, isValid: true }
-        Expect(isPossible.blackCamelMove(chessboard, Capture)).toBeTruthy();
+        let Capture: Move = { from: positionE4, to: positionF1, isValid: true }
+        Expect(isPossible.camelMove(chessboard, Capture)).toBeTruthy();
     }
 
     @Test("A Camel cannot move diagonally")
     testCannotMoveDiagonally() {
         // TODO:
         let Diagonal: Move = { from: positionE4, to: positionF5, isValid: true };
-        Expect(isPossible.blackCamelMove(chessboard, Diagonal)).toBe(false);
+        Expect(isPossible.camelMove(chessboard, Diagonal)).toBe(false);
     }
 
     @Test("A Camel cannot move horizontally")
     testCannotMoveHorizontally() {
         // TODO:
         let Horizontal: Move = { from: positionE4, to: positionF4, isValid: true };
-        Expect(isPossible.blackCamelMove(chessboard, Horizontal)).toBe(false);
+        Expect(isPossible.camelMove(chessboard, Horizontal)).toBe(false);
     }
 
     @Test("A Camel cannot move vertically")
     testCannotMoveVertically() {
         // TODO:
         let vertical: Move = { from: positionE4, to: positionE5, isValid: true };
-        Expect(isPossible.blackCamelMove(chessboard, vertical)).toBe(false);
+        Expect(isPossible.camelMove(chessboard, vertical)).toBe(false);
     }
 
     @Test("A Camel can capture a piece from another color")
     testCanCaptureAnotherColor() {
         // TODO:
-        putPiece(chessboard, positionF1, pieces.blackPawn);
+        putPiece(chessboard, positionF1, pieces.whiteKing);
 
         let Capture: Move = { from: positionE4, to: positionF1, isValid: true }
-        Expect(isPossible.blackCamelMove(chessboard, Capture)).not.toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, Capture)).toBeTruthy();
     }
 
     @Test("A Camel cannot capture a piece from the same color")
     testCannotCaptureSameColor() {
         // TODO:
-        putPiece(chessboard, positionF1, pieces.whitePawn);
+        putPiece(chessboard, positionF1, pieces.blackCamel);
 
         let Capture: Move = { from: positionE4, to: positionF1, isValid: true }
-        Expect(isPossible.blackCamelMove(chessboard, Capture)).not.toBeTruthy();
+        Expect(isPossible.camelMove(chessboard, Capture)).not.toBeTruthy();
     }
 }

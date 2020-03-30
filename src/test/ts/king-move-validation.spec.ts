@@ -86,7 +86,7 @@ const moveE4_D7: Move = move(positionE4, positionD7);
 // Impossible moves
 const moveE4_C7: Move = move(positionE4, positionC7);
 const moveE4_B2: Move = move(positionE4, positionB2);
-export class TestBlackKingMoves {
+export class TestkingMoves {
 
     @Setup
     beforeEach() {
@@ -110,14 +110,14 @@ export class TestBlackKingMoves {
         let singleRight: Move = { from: positionE4, to: positionF4, isValid: true };
         let DiagonalRightUp: Move = { from: positionE4, to: positionF5, isValid: true };
 
-        Expect(isPossible.blackKingMove(chessboard, singleLeft)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, diagonalLeftdown)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, diagonalLeftUp)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, singleDown)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, single)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, diagonalRightDown)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, singleRight)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, DiagonalRightUp)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, singleLeft)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, diagonalLeftdown)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, diagonalLeftUp)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, singleDown)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, single)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, diagonalRightDown)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, singleRight)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, DiagonalRightUp)).toBeTruthy();
 
 
     }
@@ -132,12 +132,12 @@ export class TestBlackKingMoves {
         let C6: Move = { from: positionE4, to: positionC6, isValid: true };
         let D4: Move = { from: positionE4, to: positionD4, isValid: true };
         let F4: Move = { from: positionE4, to: positionF4, isValid: true };
-        Expect(isPossible.blackKingMove(chessboard, C2)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, C3)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, C4)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, C6)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, D4)).toBeTruthy();
-        Expect(isPossible.blackKingMove(chessboard, F4)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C2)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C3)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C4)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C6)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, D4)).toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, F4)).toBeTruthy();
 
 
     }
@@ -149,7 +149,7 @@ export class TestBlackKingMoves {
         // Check the King cannot move to E5.
         putPiece(chessboard, positionE5, pieces.blackPawn);
         let Capture: Move = {from: positionE4, to: positionE5, isValid: true};
-        Expect(isPossible.blackKingMove(chessboard, Capture )).toBe(false);
+        Expect(isPossible.kingMove(chessboard, Capture )).not.toBeTruthy();
     }
 
     @Test("A King can capure pieces from a different color")
@@ -159,6 +159,6 @@ export class TestBlackKingMoves {
         // Check the King can move to E5.
         putPiece(chessboard, positionE5, pieces.whitePawn);
         let Capture: Move = {from: positionE4, to: positionE5, isValid: true};
-        Expect(isPossible.blackKingMove(chessboard, Capture )).toBe(true);
+        Expect(isPossible.kingMove(chessboard, Capture )).toBeTruthy();
     }
 }
