@@ -84,14 +84,12 @@ Cela impliquera la mise à jour des vos divergences pour récupérer les changem
 Pour cela, vous devez faire:
 
 ```sh
-git remote add upstream https://gitlab.univ-nantes.fr/naomod/idl/projet-2019.git
-git fetch upstream
-git rebase upstream/master
+git remote add upstream https://gitlab.univ-nantes.fr/naomod/idl/projet-2019.git # pas besoin si déjà fait
+git pull upstream master
 ```
 
-* La première ligne ajoute le dépot originel et le nomme "upstream"
-* La deuxième ligne récupère les changements, sans les fusionner
-* La troisième ligne fusione les changements avec votre divergence
+* La première ligne ajoute le dépôt originel et le nomme "upstream"
+* La deuxième ligne récupère les changements et les fusionne avec votre divergence
 
 
 == Test et lancement
@@ -190,7 +188,7 @@ Vous devez procéder par itérations successives, n'essayez pas d'implémenter l
 . Exécutez les tests pour vérifier que la fonctionnalité marche correctement et la non-régression.
 . Recommencez avec la fonctionnalité suivante.
 
-Par exemple, lorsque vous allez implémenter les fonctions qui valident le mouvement des Impératrices (`blackEmpressMove()` et `whiteEmpressMove()`) , vous pouvez subdiviser leurs comportements en différentes fonctionnalités: 
+Par exemple, lorsque vous allez implémenter la fonction qui valide le mouvement des Impératrices (`empressMove()`, vous pouvez subdiviser leurs comportements en différentes fonctionnalités: 
 
 * Validation des mouvements horizontaux, verticaux et diagonaux, sans se préoccuper des autres pièces.
 * Invalidation d'des mouvements (horizontaux, verticaux et diagonaux) lorsque la case finale contient une pièce de même couleur.
@@ -279,9 +277,9 @@ Suivez la même démarche pour implémenter et tester les autres fonctionnalité
 
 Pour rendre le projet, il vous suffit de vous assurer d'avoir :
 
-- bien effectué tous les _commits_ et _pushs_ nécessaires avec `git`,
+- bien effectué toutes les validations (_commits_) et publications (_pushs_) nécessaires avec `git`,
 - bien ajouté *Naobot* comme membre _Reporter_ de votre projet,
-- bien commité et pushé tous vos changements et fichiers de travail.
+- bien validé (_commit_) et publié (_push_) tous vos changements et fichiers de travail.
 
 Si vous le souhaitez, vous pouvez également ajouter un fichier "`RENDU.md`" à la racine du projet, afin de décrire les spécificités de votre projet (choix techniques, parties non traitées, extensions non demandées, etc.).
 
@@ -295,4 +293,4 @@ Tant que tout cela est bien fait avant la date limite de rendu, alors tout est b
 
 * Écrivez les tests unitaires avant ou en même temps que les fonctions. Ne les laissez pas pour la fin, les test unitaires sont très utiles pendant le développement et vous feront gagner du temps.
 
-* Faites bon usage de `git` : effectuez des _commits_ et des _pushs_ régulièrement ! Cela vous permet d'éviter de perdre votre travail, et de mieux collaborer en équipe.
+* Faites bon usage de `git` : effectuez des validations (_commits_) et des publications (_pushs_) régulièrement ! Cela vous permet d'éviter de perdre votre travail, et de mieux collaborer en équipe.
