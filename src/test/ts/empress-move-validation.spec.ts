@@ -112,7 +112,7 @@ export class TestEmpressMoves {
 
     }
 
-    @Test("An Empress can move three squares horizontally and one square vertically")
+    @Test("An Empress can move two squares horizontally and one square vertically")
     testCanMoveTwoHorizontalAndOneVertical() {
         // TODO
         // Check the following moves are possible: 
@@ -131,7 +131,7 @@ export class TestEmpressMoves {
 
     }
 
-    @Test("An Empress can move three squares vertically  and one square horizontally")
+    @Test("An Empress can move two squares vertically  and one square horizontally")
     testCanMoveTwoVerticalAndOneHorizontal() {
         // TODO
         // moveE4_F2

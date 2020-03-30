@@ -113,14 +113,14 @@ export class TestPrincessMoves {
         Expect(isPossible.princessMove(chessboard, H1)).toBeTruthy();
     }
 
-    @Test("A Princess can move three squares horizontally and one square vertically")
+    @Test("A Princess can move two squares horizontally and one square vertically")
     testCanMoveTwoHorizontalAndOneVertical() {
         // TODO
         let C5: Move = { from: positionE4, to: positionC5, isValid: true };
         Expect(isPossible.princessMove(chessboard, C5)).toBeTruthy();
     }
 
-    @Test("A Princess can move three squares vertically  and one square horizontally")
+    @Test("A Princess can move two squares vertically  and one square horizontally")
     testCanMoveTwoVerticalAndOneHorizontal() {
         // TODO
         let D6: Move = { from: positionE4, to: positionD6, isValid: true };

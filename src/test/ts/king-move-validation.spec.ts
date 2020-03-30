@@ -122,10 +122,12 @@ export class TestkingMoves {
 
     }
 
+
     @Test("A King cannot move more than 1 square")
     testCannotMoveMoreThanOneSquare() {
         // TODO:
-        // Check it cannot move to squares C2, C3, C4, C6, D4, and F4
+        throw "need rework";
+        // Check it cannot move to squares C2, C3, C4, C6, E2, E6, G2, G4, and G6
         let C2: Move = { from: positionE4, to: positionC2, isValid: true };
         let C3: Move = { from: positionE4, to: positionC3, isValid: true };
         let C4: Move = { from: positionE4, to: positionC4, isValid: true };
