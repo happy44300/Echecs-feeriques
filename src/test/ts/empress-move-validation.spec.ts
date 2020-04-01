@@ -18,7 +18,8 @@ const positionB2: Position = position(1, 1) // B2
 const positionB3: Position = position(1, 2) // B3
 const positionB5: Position = position(1, 4) // B5
 const positionB6: Position = position(1, 5) // B6
-const positionC3: Position = position(2, 1) // C3
+
+const positionC3: Position = position(2, 2) // C3
 const positionC4: Position = position(2, 3) // C4
 const positionC5: Position = position(2, 4) // C5
 const positionC6: Position = position(2, 5) // C6
@@ -40,6 +41,7 @@ const positionE8: Position = position(4, 7) // E8
 
 const positionF1: Position = position(5, 0) // F1
 const positionF2: Position = position(5, 1) // F2
+const positionF4: Position = position(5, 3) // F4
 const positionF6: Position = position(5, 5) // F6
 const positionF7: Position = position(5, 6) // F7
 const positionG3: Position = position(6, 2) // G3
@@ -79,15 +81,14 @@ const moveE4_D7: Move = move(positionE4, positionD7);
 const moveE4_C7: Move = move(positionE4, positionC7);
 const moveE4_B2: Move = move(positionE4, positionB2);
 
-@Ignore("Not implemented")
-export class TestEmpressMoves {
+export class TestEmpressMoves_ {
     @Setup
     beforeEach() {
         // TODO:
         // Initialize an empty chessboard
         // Place a white Empress on E4
         chessboard = createEmptyChessboard();
-        putPiece(chessboard, positionE4, pieces.blackKing);
+        putPiece(chessboard, positionE4, pieces.whiteEmpress);
     }
 
     @Test("An Empress can move horizontally")
@@ -129,6 +130,9 @@ export class TestEmpressMoves {
         Expect(isPossible.empressMove(chessboard, C3)).toBeTruthy();
         Expect(isPossible.empressMove(chessboard, C5)).toBeTruthy();
 
+
+
+
     }
 
     @Test("An Empress can move two squares vertically  and one square horizontally")
@@ -138,14 +142,14 @@ export class TestEmpressMoves {
         // moveE4_F6
         // moveE4_D2
         // moveE4_D6
-        let G3: Move = { from: positionE4, to: positionG3, isValid: true };
-        let G5: Move = { from: positionE4, to: positionG5, isValid: true };
-        let C3: Move = { from: positionE4, to: positionC3, isValid: true };
-        let C5: Move = { from: positionE4, to: positionC5, isValid: true };
-        Expect(isPossible.empressMove(chessboard, G3)).toBeTruthy();
-        Expect(isPossible.empressMove(chessboard, G5)).toBeTruthy();
-        Expect(isPossible.empressMove(chessboard, C3)).toBeTruthy();
-        Expect(isPossible.empressMove(chessboard, C5)).toBeTruthy();
+        let F2: Move = { from: positionE4, to: positionF2, isValid: true };
+        let F6: Move = { from: positionE4, to: positionF6, isValid: true };
+        let D2: Move = { from: positionE4, to: positionD2, isValid: true };
+        let D6: Move = { from: positionE4, to: positionD6, isValid: true };
+        Expect(isPossible.empressMove(chessboard, F2)).toBeTruthy();
+        Expect(isPossible.empressMove(chessboard, F6)).toBeTruthy();
+        Expect(isPossible.empressMove(chessboard, D2)).toBeTruthy();
+        Expect(isPossible.empressMove(chessboard, D6)).toBeTruthy();
 
     }
 
@@ -173,8 +177,7 @@ export class TestEmpressMoves {
         // Place a black Pawn on H4
         // Check the move moveE4_H4 is possible
         putPiece(chessboard, positionH4, pieces.blackPawn);
-        let CaptureLeft: Move = { from: positionE4, to: positionH4, isValid: true };
-        Expect(isPossible.empressMove(chessboard, CaptureLeft)).toBe(true);
+        Expect(isPossible.empressMove(chessboard, moveE4_H4)).toBeTruthy();
     }
 
     @Test("A Empress cannot capture a piece from the same color")
@@ -183,8 +186,7 @@ export class TestEmpressMoves {
         // Place a white Pawn on H4
         // Check the move moveE4_H4 is impossible
         putPiece(chessboard, positionH4, pieces.whitePawn);
-        let CaptureLeft: Move = { from: positionE4, to: positionH4, isValid: true };
-        Expect(isPossible.empressMove(chessboard, CaptureLeft)).toBe(false);
+        Expect(isPossible.empressMove(chessboard, moveE4_H4)).not.toBeTruthy();
     }
 
     @Test("A Empress cannot leap other pieces, when moving horizontally")
@@ -192,18 +194,16 @@ export class TestEmpressMoves {
         // TODO:
         // Place a black Pawn on F4
         // Check the move moveE4_H4 is impossible 
-        putPiece(chessboard, positionH4, pieces.blackPawn);
-        let CaptureLeft: Move = { from: positionE4, to: positionH4, isValid: true };
-        Expect(isPossible.empressMove(chessboard, CaptureLeft)).toBe(false);
+        putPiece(chessboard, positionF4, pieces.blackPawn);
+        Expect(isPossible.empressMove(chessboard, moveE4_H4)).not.toBeTruthy();
     }
 
-    @Test("A Empress cannot leap other pieces, when moving horizontally")
+    @Test("A Empress cannot leap other pieces, when moving vertically")
     testCannotLeapvertically() {
         // TODO:
         // Place a black Pawn on E3
         // Check the move moveE4_E1 is impossible
         putPiece(chessboard, positionE3, pieces.blackPawn);
-        let CaptureLeft: Move = { from: positionE3, to: positionE1, isValid: true };
-        Expect(isPossible.empressMove(chessboard, CaptureLeft)).toBe(false);
+        Expect(isPossible.empressMove(chessboard, moveE4_E1)).not.toBeTruthy();
     }
 }

@@ -86,7 +86,7 @@ const moveE4_D7: Move = move(positionE4, positionD7);
 // Impossible moves
 const moveE4_C7: Move = move(positionE4, positionC7);
 const moveE4_B2: Move = move(positionE4, positionB2);
-@Ignore("")
+
 export class TestQueenMoves {
     @Setup
     beforeEach() {
