@@ -5,3 +5,11 @@ package-lock.json
 npm-debug.log
 package.json
 tsconfig.json
+src/test/ts/movements.spec (2).ts
+src/test/ts/pawn-move-validation.spec (2).ts
+src/test/ts/princess-move-validation.spec (2).ts
+src/test/ts/queen-move-validation.spec (2).ts
+src/main/ts/move-validation.ts
+src/test/ts/camel-move-validation.spec (2).ts
+src/test/ts/empress-move-validation.spec (2).ts
+src/main/ts/move-validation.ts

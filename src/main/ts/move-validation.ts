@@ -72,34 +72,37 @@ export function whitePawnMove(board: Chessboard, move: Move): boolean {
  * @param move 
  */
 export function kingMove(board: Chessboard, move: Move): boolean {
-    // #TODO: Implement this function
-    //distance on x and y must be < 1
-    let rankDist: number = Math.abs(move.from!.rank - move.to!.rank);
-    let fileDist: number = Math.abs(move.from!.file - move.to!.file);
-    let pieceIsWhite: boolean = pieceAtPosition(board, move.from!).isWhite;
+
+    let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
+    let absFileDiff: number = Math.abs(move.to!.file - move.from!.file);
+    let isPieceWhite: boolean = pieceAtPosition(board, move.from!).isWhite;
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
-
+    
     //null check
     if (pieceAtPosition(board, move.to!) === undefined) {
-        destinationIsWhite = !pieceIsWhite;
+        destinationIsWhite = !isPieceWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
 
+    //console.log(`from: ${move.from?.rank} ${move.from?.file} move to : ${move.to?.rank} ${move.to?.file} rank: ${absRankDiff} file: ${absFileDiff}`)
+
     //x
-    if (move.from!.rank === move.to!.rank && fileDist <= 1) {
-        return isEmpty(board, move.to!) || pieceIsWhite != destinationIsWhite;
+    if (move.from!.file == move.to!.file && absRankDiff == 1) {
+        return isPieceWhite != destinationIsWhite;
     }
+
     //y
-    if (move.from!.file === move.to!.file && fileDist <= 1) {
-        return isEmpty(board, move.to!) || pieceIsWhite != destinationIsWhite;
+    if (move.from!.rank == move.to!.rank && absFileDiff == 1) {
+        return  isPieceWhite != destinationIsWhite;
     }
-    //diagonale
-    if (move.from!.rank === move.to!.rank && fileDist <= 1 && move.from!.file && rankDist <= 1) {
-        return isEmpty(board, move.to!) || pieceIsWhite != destinationIsWhite;
+
+    //diagonal
+    if ( absRankDiff == absFileDiff && absFileDiff == 1 && absRankDiff == 1) {
+        return isPieceWhite != destinationIsWhite;
     }
-    return true;
+    return false;
 }
 
 
@@ -132,20 +135,20 @@ export function empressMove(board: Chessboard, move: Move): boolean {
     
     let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
     let absFileDiff: number = Math.abs(move.to!.file - move.from!.file);
-    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let isPieceWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
 
     //check if there is a piece on the square
     if (pieceAtPosition(board, move.to!) === undefined) {
-        destinationIsWhite = !pieceIsWhite;
+        destinationIsWhite = !isPieceWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
 
     //L move
-    if (absRankDiff == 2 && absFileDiff == 1) { return pieceIsWhite != destinationIsWhite; }
-    if (absRankDiff == 1 && absFileDiff == 2) { return pieceIsWhite != destinationIsWhite; }
+    if (absRankDiff == 2 && absFileDiff == 1) { return isPieceWhite != destinationIsWhite; }
+    if (absRankDiff == 1 && absFileDiff == 2) { return isPieceWhite != destinationIsWhite; }
 
     return rookMove(board,move);
 }
@@ -168,20 +171,20 @@ export function princessMove(board: Chessboard, move: Move): boolean {
     let fileDiff: number = move.to!.file - move.from!.file;
     let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
     let absfileDiff: number = Math.abs(move.to!.file - move.from!.file);
-    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let isPieceWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
 
     //check if there is a piece on the square and make it opposite
     if (pieceAtPosition(board, move.to!) === undefined) {
-        destinationIsWhite = !pieceIsWhite;
+        destinationIsWhite = !isPieceWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
 
     //L move
-    if (absRankDiff == 2 && absfileDiff == 1) { return pieceIsWhite != destinationIsWhite; }
-    if (absRankDiff == 1 && absfileDiff == 2) { return pieceIsWhite != destinationIsWhite; }
+    if (absRankDiff == 2 && absfileDiff == 1) { return isPieceWhite != destinationIsWhite; }
+    if (absRankDiff == 1 && absfileDiff == 2) { return isPieceWhite != destinationIsWhite; }
 
     return bishopMove(board, move);
 }
@@ -201,18 +204,18 @@ export function camelMove(board: Chessboard, move: Move): boolean {
 
     let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
     let absfileDiff: number = Math.abs(move.to!.file - move.from!.file);
-    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let isPieceWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
 
     //null check
     if (pieceAtPosition(board, move.to!) === undefined) {
-        destinationIsWhite = !pieceIsWhite;
+        destinationIsWhite = !isPieceWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
-    if (absRankDiff == 3 && absfileDiff == 1) { return pieceIsWhite != destinationIsWhite; }
-    if (absRankDiff == 1 && absfileDiff == 3) { return pieceIsWhite != destinationIsWhite; }
+    if (absRankDiff == 3 && absfileDiff == 1) { return isPieceWhite != destinationIsWhite; }
+    if (absRankDiff == 1 && absfileDiff == 3) { return isPieceWhite != destinationIsWhite; }
 
     return false;
 }
@@ -231,20 +234,20 @@ function bishopMove(board: Chessboard, move: Move) :boolean {
     let rankDiff: number = move.to!.rank - move.from!.rank;
     let fileDiff: number = move.to!.file - move.from!.file;
     let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
-    let absfileDiff: number = Math.abs(move.to!.file - move.from!.file);
-    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let absFileDiff: number = Math.abs(move.to!.file - move.from!.file);
+    let isPieceWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
 
     //check if there is a piece on the square and make it opposite
     if (pieceAtPosition(board, move.to!) === undefined) {
-        destinationIsWhite = !pieceIsWhite;
+        destinationIsWhite = !isPieceWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
 
     //diagonal move
-    if (absRankDiff == absfileDiff) {
+    if (absRankDiff == absFileDiff) {
         for (let i = 1; i < absRankDiff; i++) {
 
             let xPos = move.from!.rank;
@@ -278,7 +281,7 @@ function bishopMove(board: Chessboard, move: Move) :boolean {
 
         }
         //eat check
-        return pieceIsWhite != destinationIsWhite;
+        return isPieceWhite != destinationIsWhite;
     }
     return false;
     
@@ -300,13 +303,13 @@ function rookMove(board: Chessboard, move: Move) : boolean {
     let fileDiff: number = move.to!.file - move.from!.file;
     let absRankDiff: number = Math.abs(move.to!.rank - move.from!.rank);
     let absFileDiff: number = Math.abs(move.to!.file - move.from!.file);
-    let pieceIsWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
+    let isPieceWhite: boolean = squareAtPosition(board, move.from!).piece!.isWhite;
     let destination: Square = squareAtPosition(board, move.to!);
     let destinationIsWhite: boolean;
 
     //check if there is a piece on the square
     if (pieceAtPosition(board, move.to!) === undefined) {
-        destinationIsWhite = !pieceIsWhite;
+        destinationIsWhite = !isPieceWhite;
     } else {
         destinationIsWhite = destination.piece!.isWhite;
     }
@@ -343,8 +346,8 @@ function rookMove(board: Chessboard, move: Move) : boolean {
 
 
         }
-        //eat check
-        return pieceIsWhite != destinationIsWhite;
+
+        return isPieceWhite != destinationIsWhite;
     }
     return false;
 }

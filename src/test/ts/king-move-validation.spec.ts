@@ -122,9 +122,7 @@ export class TestkingMoves {
         Expect(isPossible.kingMove(chessboard, singleRight)).toBeTruthy();
         Expect(isPossible.kingMove(chessboard, DiagonalRightUp)).toBeTruthy();
 
-
     }
-
 
     @Test("A King cannot move more than 1 square")
     testCannotMoveMoreThanOneSquare() {
@@ -138,17 +136,15 @@ export class TestkingMoves {
         let G2: Move = { from: positionE4, to: positionG2, isValid: true };
         let G4: Move = { from: positionE4, to: positionG4, isValid: true };
         let G6: Move = { from: positionE4, to: positionG6, isValid: true };
-        Expect(isPossible.kingMove(chessboard, C2)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, C3)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, C4)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, C6)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, E2)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, E6)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, G2)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, G4)).toBeTruthy();
-        Expect(isPossible.kingMove(chessboard, G6)).toBeTruthy();
-
-
+        Expect(isPossible.kingMove(chessboard, C2)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C3)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C4)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, C6)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, E2)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, E6)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, G2)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, G4)).not.toBeTruthy();
+        Expect(isPossible.kingMove(chessboard, G6)).not.toBeTruthy();
     }
 
     @Test("A King cannot capure pieces from the same color")
