@@ -86,8 +86,6 @@ export function kingMove(board: Chessboard, move: Move): boolean {
         destinationIsWhite = destination.piece!.isWhite;
     }
 
-    //console.log(`from: ${move.from?.rank} ${move.from?.file} move to : ${move.to?.rank} ${move.to?.file} rank: ${absRankDiff} file: ${absFileDiff}`)
-
     //x
     if (move.from!.file == move.to!.file && absRankDiff == 1) {
         return isPieceWhite != destinationIsWhite;
