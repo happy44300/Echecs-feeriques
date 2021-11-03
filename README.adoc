@@ -1,6 +1,6 @@
 = Échecs féeriques
 
-Ceci est un projet de L1 ayant pour but de créer une WebApp pour jouer aux echec féériques
+Ceci est un projet de L1 ayant pour but de créer une WebApp pour jouer aux echec féériques. Pour ce faire nous avons utilisé AngularJS, typescript et réaliser des test unitaires
 
 == Les échecs féériques
 
